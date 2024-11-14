@@ -1,0 +1,13 @@
+.image {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: cover;
+    height: 100vh;
+}
+
+.bodyBackground {
+    background-color: #1a1c20;
+  }
+
+  

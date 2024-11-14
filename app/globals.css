@@ -2,20 +2,118 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer utilities {
+  .bg-tech-bg {
+    background-image: url('/tech-background.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .header-title {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  .header-subtitle {
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  .cta-button {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Custom animation for the header */
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-image{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+
+/* <<<<<<< HEAD
+======= */
+}
+
+/* >>>>>>> 7f026380cacbbdb6d59d4372823397943fb8c29f */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
+
+.profile {
+  margin-right: 1rem;
+}
+
+.info {
+  display: flex;
+}
+
+.personal {
+  margin-right: 2rem;
+}
+
+.personal p {
+  margin-bottom: 0.5rem;
+}
+
+.details h2 {
+  margin-bottom: 0.5rem;
+}
+
+.connector {
+  position: relative;
+}
+.connector::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background-color: #777777; /* Adjust color as needed */
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.background-image {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  flex: 1;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  flex: 0 0 20%; /* Adjust as needed */
+  padding: 20px;
+}
+
+.content-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
 }
