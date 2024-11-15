@@ -11,8 +11,8 @@ import {
   fetchFilesystemLimit,
   fetchIORead,
   fetchIOWrite,
-} from "./api/prometheus"; // Prometheus fetching logic
-import DockerLayout from "./layout"; // Import the custom DockerLayout component
+} from "../api/prometheus"; // Prometheus fetching logic
+import DockerLayout from "../layout"; // Import the custom DockerLayout component
 
 export default function DockerPage() {
   const [metrics, setMetrics] = useState({

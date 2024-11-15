@@ -3,6 +3,7 @@
 
 import { Inter } from "next/font/google";
 import "./globals.css";
+import BottomBar from "./components/BottomBar";
 import Header from "./components/Header";
 import styles from './styles.module.css';
 import { useEffect } from "react";
@@ -22,15 +23,14 @@ export default function RootLayout({ children }) {
         <main className="main-container min-h-screen flex flex-col max-w-screen-xl mx-auto">
           
           {/* Header at the top */}
-          <Header />
-
-          
-
+            <Header />
             {/* Content Area */}
             <div className="content-area overflow-y-auto p-4 lg:p-10">
               {children}
             </div>
-          
+
+            {/* Bottom Bar */}
+          <BottomBar />  {/* Add the BottomBar here */}
           
         </main>
       </body>

@@ -1,0 +1,80 @@
+/* BottomBar.module.css */
+
+/* Bottom bar styles */
+.bottomBar {
+    position: fixed; /* Fix the bottom bar to the bottom of the screen */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #009688, #004d40); /* Same gradient as the header */
+    padding: 16px 0; /* Vertical padding */
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow to separate from page content */
+  }
+  
+  /* Container inside the bottom bar */
+  .bottomBarContainer {
+    max-width: 1200px; /* Adjust to fit your content */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Horizontal padding */
+  }
+  
+  /* Logo or Title */
+  .bottomBarLogo {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Navigation styles in the bottom bar */
+  .bottomBarNav {
+    display: flex;
+    gap: 2rem; /* Space between links */
+    align-items: center;
+  }
+  
+  .navLink {
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #fff; /* Default color */
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .navLink:hover {
+    color: #00bfae; /* Change color on hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+  }
+  
+  .navLink:active {
+    transform: scale(1.05); /* Slight shrink when clicked */
+  }
+  
+  /* Social Media Button styles */
+  .bottomBarButtons button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .bottomBarButtons button:hover {
+    background-color: #00796b;
+    transform: scale(1.05); /* Slight increase in size when hovered */
+  }
+  
+  .bottomBarButtons button:active {
+    transform: scale(1.02); /* Slight shrink on click */
+  }
+  
+  /* GSAP animation transition */
+  .bottomBarLogo, .bottomBarNav, .bottomBarButtons {
+    opacity: 0; /* Start with elements hidden for animation */
+  }
+  

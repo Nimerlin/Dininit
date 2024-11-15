@@ -1,11 +1,7 @@
-"use client";
-
-// components/Services/MicroservicesMonitor.js
-
- // Make sure this is at the top of the file
+"use client"; // To ensure compatibility with React hooks
 
 import React from 'react';
-import { useRouter } from 'next/router'; // This hook can only be used in client components
+import { useRouter } from 'next/router'; // Import useRouter for navigation
 
 // Mock data for Docker containers
 const mockDockerData = [
@@ -16,30 +12,25 @@ const mockDockerData = [
 ];
 
 const MicroservicesMonitor = () => {
-  const router = useRouter();  // Make sure useRouter is in a client component
-  const [dockerData, setDockerData] = React.useState(mockDockerData);
+  const router = useRouter(); // Initialize the router
 
   const handleClick = () => {
-    // Navigate to the Docker page on click
+    // Navigate to the Docker monitoring page
     router.push('/docker');
   };
 
   return (
-    <div className="monitor-card" onClick={handleClick}>
-      <h2 className="monitor-title">Microservices Monitoring</h2>
-      <p>Click here to go to Docker monitoring page</p>
-
-      <div className="docker-monitor">
-        <h3>Docker Monitoring</h3>
-        <p>Docker Container Count: {dockerData.length}</p>
-        <ul>
-          {dockerData.map((container, index) => (
-            <li key={index}>{container.containerName}</li>
-          ))}
-        </ul>
-      </div>
+    <div className="monitor-card" onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <h2>Microservices Monitoring</h2>
+      <p>Docker Container Count: {mockDockerData.length}</p>
+      <ul>
+        {mockDockerData.map((container, index) => (
+          <li key={index}>{container.containerName}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
 export default MicroservicesMonitor;
+
