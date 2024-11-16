@@ -1,7 +1,7 @@
 "use client"; // To ensure compatibility with React hooks
 
 import React from 'react';
-import { useRouter } from 'next/router'; // Import useRouter for navigation
+import { useRouter } from 'next/navigation'; // Import useRouter for navigation
 
 // Mock data for Docker containers
 const mockDockerData = [

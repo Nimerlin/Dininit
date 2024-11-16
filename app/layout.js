@@ -20,17 +20,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} ${styles.bodyBackground}`}>
-        <main className="main-container min-h-screen flex flex-col max-w-screen-xl mx-auto">
+        <main className="main-container min-h-screen flex flex-col mx-auto">
           
           {/* Header at the top */}
-            <Header />
+            {/* <Header /> */}
             {/* Content Area */}
-            <div className="content-area overflow-y-auto p-4 lg:p-10">
+            {/* <div className="content-area overflow-y-auto p-4 lg:p-10"> */}
               {children}
-            </div>
+            {/* </div> */}
 
             {/* Bottom Bar */}
-          <BottomBar />  {/* Add the BottomBar here */}
+          {/* <BottomBar />  Add the BottomBar here */}
           
         </main>
       </body>
