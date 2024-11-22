@@ -1,7 +1,7 @@
 'use client';
 
 import AnimatedSection from "./AnimatedSection";
-import Header from "./Header";
+import Header from "./landingPage/Header";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";

@@ -4,7 +4,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import BottomBar from "./components/BottomBar";
-import Header from "./components/Header";
+import Header from "./components/landingPage/Header";
 import styles from './styles.module.css';
 import { useEffect } from "react";
 import gsap from "gsap"; // Import GSAP for animations

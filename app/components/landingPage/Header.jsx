@@ -1,17 +1,32 @@
 import { useEffect } from "react";
 import gsap from "gsap";
-import Navbar from './Navbar'; // Import the Navbar component
+ // Import the Navbar component
 
 export default function Header() {
   useEffect(() => {
     gsap.fromTo(".header-title", { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 1, delay: 0.5 });
     gsap.fromTo(".header-subtitle", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 1 });
     gsap.fromTo(".cta-button", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1, delay: 1.5 });
+
+    // Continuous animation for the image
+    const tl = gsap.timeline({ repeat: -1, yoyo: true }); // Create a timeline that repeats indefinitely and yoyo
+    tl.to(".header-image", { 
+      scale: 1.1, 
+      rotationY: 10, 
+      duration: 1, 
+      ease: "power1.inOut" 
+    })
+    .to(".header-image", { 
+      scale: 1, 
+      rotationY: 0, 
+      duration: 1, 
+      ease: "power1.inOut" 
+    });
   }, []);
 
   return (
     <div>
-      <Navbar />
+   
       <header className="bg-blue-900 min-h-screen flex flex-col md:flex-row justify-center items-center text-center md:text-left text-white px-6 py-16 relative">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="z-10 flex-1">
@@ -24,7 +39,7 @@ export default function Header() {
           </a>
         </div>
         <div className="z-10 flex-1 mt-8 md:mt-0">
-          <img src="5.png" alt="Rocket" className="w-full h-auto" />
+          <img src="5.png" alt="Rocket" className="header-image w-full h-auto" />
         </div>
       </header>
     </div>
