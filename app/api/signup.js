@@ -1,28 +1,52 @@
-// pages/api/signup.js
-import { users } from "../../data/users"; // Mock data (you should use a real database)
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcrypt');
+const { MongoClient } = require('mongodb');
 
-export default async function handler(req, res) {
-  if (req.method === "POST") {
-    const { fullName, email, phoneNumber, address, password } = req.body;
+const uri = "mongodb://localhost:27017";
+const client = new MongoClient(uri);
 
-    // Validate the input fields
-    if (!fullName || !email || !phoneNumber || !address || !password) {
-      return res.status(400).json({ success: false, message: "All fields are required." });
+router.post('/signup', async (req, res) => {
+    try {
+        const { name, email, phone, password } = req.body;
+
+        // Validate required fields
+        if (!name || !email || !phone || !password) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
+        await client.connect();
+        const database = client.db('dininit_monitoring');
+        const users = database.collection('users');
+
+        // Check if user already exists
+        const existingUser = await users.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ error: 'Email already registered' });
+        }
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create new user
+        const newUser = {
+            name,
+            email,
+            phone,
+            password: hashedPassword,
+            createdAt: new Date()
+        };
+
+        await users.insertOne(newUser);
+        
+        res.status(201).json({ message: 'User registered successfully' });
+
+    } catch (error) {
+        console.error('Signup error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    } finally {
+        await client.close();
     }
+});
 
-    // Check if the email is already taken
-    const existingUser = users.find((user) => user.email === email);
-    if (existingUser) {
-      return res.status(409).json({ success: false, message: "Email already exists" });
-    }
-
-    // Add the new user (for demo purposes, we're using mock data)
-    const newUser = { fullName, email, phoneNumber, address, password };
-    users.push(newUser);  // In a real app, you'd save this to a database
-
-    // Respond with success
-    return res.status(201).json({ success: true, message: "Account created successfully", user: newUser });
-  } else {
-    return res.status(405).json({ success: false, message: "Method Not Allowed" });
-  }
-}
+module.exports = router;

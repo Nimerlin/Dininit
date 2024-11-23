@@ -12,10 +12,13 @@ const SignupPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setSuccess("");
 
     // Validate password match
     if (password !== confirmPassword) {
@@ -30,23 +33,34 @@ const SignupPage = () => {
     }
 
     try {
-      // Make API request to register the user (replace with your actual API endpoint)
-      const response = await axios.post("/api/signup", {
-        fullName,
+      const response = await axios.post("http://localhost:3001/api/signup", {
+        name: fullName,
         email,
-        phoneNumber,
+        phone: phoneNumber,
         address,
         password,
       });
 
-      if (response.data.success) {
-        // If signup is successful, redirect to login page
-        router.push("/login");
-      } else {
-        setError(response.data.message || "Error creating the account.");
+      // Check if the response contains data (might be different based on your API structure)
+      if (response.data) {
+        setSuccess("Registration successful! Redirecting to login...");
+        
+        // Clear form fields
+        setFullName("");
+        setEmail("");
+        setPhoneNumber("");
+        setAddress("");
+        setPassword("");
+        setConfirmPassword("");
+
+        // Ensure the success message is visible before redirecting
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
       }
     } catch (err) {
-      setError("An error occurred while signing up.");
+      console.error("Signup error:", err); // Add this for debugging
+      setError(err.response?.data?.message || "An error occurred while signing up.");
     }
   };
 
@@ -55,6 +69,7 @@ const SignupPage = () => {
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit} className={styles["login-form"]}>
         {error && <div className={styles["error-message"]}>{error}</div>}
+        {success && <div className={styles["success-message"]}>{success}</div>}
         
         <div className={styles["form-group"]}>
           <label htmlFor="fullName">Full Name</label>
