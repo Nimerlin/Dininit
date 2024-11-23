@@ -22,7 +22,7 @@
   .card {
     flex: 1;
     min-width: 300px;
-    background: #ffffff;
+    background: #252525;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

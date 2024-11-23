@@ -19,16 +19,13 @@ export default function Navbar() {
     <nav className={`sticky top-0 z-50 ${scrolled ? 'bg-[#02194e]' : 'bg-transparent'} text-white w-full transition-colors duration-300`}>
       <div className="container mx-auto flex justify-between items-center py-4">
         <div className="flex items-center space-x-4">
-          <img src="/logo.png" alt="Logo" className="h-8" />
-          {/* <span className="text-xl font-bold">Gostart</span> */}
+          <img src="/logo1-removebg.png" alt="Logo" className="h-14 w-32" />
         </div>
         <div className="flex space-x-6">
-          <Link href="/home">Home</Link>
-          <Link href="/features">Features</Link>
+          <Link href="/home">Home</Link>         
           <Link href="/about">About</Link>
           <Link href="/overview">Overview</Link>
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/team">Team</Link>
+          <Link href="/pricing">Services</Link>
           <Link href="/contact">Contact</Link>
         </div>
         <div className="flex space-x-4">

@@ -95,12 +95,12 @@ export default function DockerPage() {
 
   if (loading) {
     return (
-      <DockerLayout>
+      <div>
         <h1 className="text-3xl text-white font-semibold mb-8">
           Docker Monitoring Dashboard
         </h1>
         <div className="text-white text-center">Loading metrics...</div>
-      </DockerLayout>
+      </div>
     );
   }
 
