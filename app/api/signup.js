@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb://localhost:27017";
+const uri = "mongodb://localhost:27018";
 const client = new MongoClient(uri);
 
 router.post('/signup', async (req, res) => {

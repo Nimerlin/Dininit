@@ -5,15 +5,16 @@
   max-width: 400px; /* Limit the width of the login box */
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: #122353;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   min-height: auto;
   margin-top: 80px; /* Add margin to the top to create space from header */
+  padding-bottom: 20px; /* Add padding to the bottom */
 }
 
 /* h2 {
@@ -39,18 +40,18 @@
   padding: 8px;
   font-size: 16px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #222222;
 }
 
 .login-form input:focus {
-  border-color: #00bfae;
+  border-color: #020202;
 }
 
 .login-button {
   width: 100%;
   padding: 10px;
-  background-color: #00bfae;
-  color: white;
+  background-color: #0a0a0a;
+  color: rgb(175, 174, 174);
   font-size: 16px;
   border: none;
   border-radius: 5px;
@@ -80,4 +81,22 @@
   to {
     opacity: 1;
   }
+}
+
+.footer {
+  padding-top: 80px; /* Add padding to the top */
+}
+
+.form-group label {
+  color: white; /* Set label color to white */
+}
+
+.form-group input {
+  background-color: rgb(158, 156, 156); /* Set input box background to light grey */
+}
+
+.login-form-title h2 {
+  font-weight: bold; /* Make the text bold */
+  font-size: 2em;    /* Increase the size */
+  color: white;      /* Change the text color to white */
 }
