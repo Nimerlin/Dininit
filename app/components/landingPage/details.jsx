@@ -3,7 +3,7 @@ import styles from './details.module.css';
 import { gsap } from 'gsap';
 
 const hexagonData = [
-  "Collaboration", "Change Tracking", "Security", "Logs", "Service Levels",
+  "Change Tracking", "Security", "Logs", "Service Levels",
   "CodeStream", "Integrations", "Database Monitoring", "Serverless", "Host Monitoring",
   "Kubernetes", "Cloud Monitoring", "Network Monitoring", "Error Tracking", "Profiling",
   "Traces", "APM", "Browser", "Synthetics", "Mobile", "New Relic AI",
@@ -21,7 +21,7 @@ const DetailsPage = () => {
   }, []);
 
   return (
-    <div className="bg-blue-900 p-10">
+    <div className="bg-blue-900 pb-20">
       {/* Details Section */}
       <div className="flex flex-wrap justify-between items-center">
         {/* Content Section */}
@@ -62,15 +62,42 @@ const DetailsPage = () => {
 
       {/* New Hexagonal Section */}
       <div className={styles['hexagon-container']}>
-        {hexagonData.map((item, index) => (
-          <div
-            key={index}
-            className={`${styles.hexagon} animate`}
-            onMouseEnter={() => gsap.to(`.hexagon-${index}`, { scale: 1.1, duration: 0.3 })}
-            onMouseLeave={() => gsap.to(`.hexagon-${index}`, { scale: 1, duration: 0.3 })}
-          >
-            <div className={styles['hexagon-text']}>{item}</div>
-          </div>
+        {/* First Row */}
+        {hexagonData.slice(0, 5).map((item, index) => (
+            <div
+                key={index}
+                className={`${styles.hexagon} animate`}
+                onMouseEnter={() => gsap.to(`.hexagon-${index}`, { scale: 1.1, duration: 0.3 })}
+                onMouseLeave={() => gsap.to(`.hexagon-${index}`, { scale: 1, duration: 0.3 })}
+            >
+                <div className={styles['hexagon-text']}>{item}</div>
+            </div>
+        ))}
+        {/* Empty divs for spacing in the second row */}
+        <div style={{ gridColumn: 'span 2' }}></div>
+        {/* Second Row */}
+        {hexagonData.slice(5, 10).map((item, index) => (
+            <div
+                key={index + 5} // Adjust index for the second row
+                className={`${styles.hexagon} animate`}
+                onMouseEnter={() => gsap.to(`.hexagon-${index + 5}`, { scale: 1.1, duration: 0.3 })}
+                onMouseLeave={() => gsap.to(`.hexagon-${index + 5}`, { scale: 1, duration: 0.3 })}
+            >
+                <div className={styles['hexagon-text']}>{item}</div>
+            </div>
+        ))}
+        {/* Empty divs for spacing in the third row */}
+        <div style={{ gridColumn: 'span 1' }}></div>
+        {/* Third Row */}
+        {hexagonData.slice(10, 15).map((item, index) => (
+            <div
+                key={index + 10} // Adjust index for the third row
+                className={`${styles.hexagon} animate`}
+                onMouseEnter={() => gsap.to(`.hexagon-${index + 10}`, { scale: 1.1, duration: 0.3 })}
+                onMouseLeave={() => gsap.to(`.hexagon-${index + 10}`, { scale: 1, duration: 0.3 })}
+            >
+                <div className={styles['hexagon-text']}>{item}</div>
+            </div>
         ))}
       </div>
 

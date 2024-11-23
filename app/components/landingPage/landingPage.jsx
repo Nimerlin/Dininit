@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import gsap from "gsap"; // GSAP for animations
+import Footer from "../footer";
 
 export default function LandingPage() {
   return (
@@ -20,6 +21,7 @@ export default function LandingPage() {
 
       <DetailsPage/> 
 
+<Footer/>
 
     </div>
   );

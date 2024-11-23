@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,7 +16,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? 'bg-blue-900' : 'bg-transparent'} text-white fixed w-full transition-colors duration-300`}>
+    <nav className={`sticky top-0 z-50 ${scrolled ? 'bg-[#02194e]' : 'bg-transparent'} text-white w-full transition-colors duration-300`}>
       <div className="container mx-auto flex justify-between items-center py-4">
         <div className="flex items-center space-x-4">
           <img src="/logo.png" alt="Logo" className="h-8" />

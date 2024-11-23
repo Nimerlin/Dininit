@@ -1,7 +1,7 @@
 .hexagon {
-    width: 100px; /* Adjust size as needed */
-    height: 57.74px; /* Height for hexagon */
-    background-color: #4A90E2; /* Example color */
+    width: 115px; /* Adjust size as needed */
+    height: 110px; /* Height for hexagon */
+    background-color: #02194e; /* Example color */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,7 +9,7 @@
     font-weight: bold;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Hexagon shape */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add transition for smooth effects */
-    border: 2px solid #ffffff; /* White border */
+    /* border: 2px solid #ffffff; White border */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
     padding: 10px; /* Adds some space around text inside the hexagon */
     cursor: pointer; /* Change cursor to indicate interactivity */
