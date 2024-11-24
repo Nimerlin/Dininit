@@ -55,20 +55,19 @@ const LoginPage = () => {
 
   return (
     <>
-      <Navbar />
-      <div className={styles["login-container"]}>
+      <div className="w-full max-w-md mx-auto p-5 rounded-lg bg-[#7B7F91] bg-opacity-40 shadow-lg flex flex-col justify-start items-center mt-20 pb-5">
         {username ? (
-          <div className={styles["welcome-message"]}>
-            <h2>Welcome, {username}!</h2>
+          <div className="text-center p-5 animate-fadeIn">
+            <h2 className="font-bold text-2xl text-white">Welcome, {username}!</h2>
             <p>Redirecting to dashboard...</p>
           </div>
         ) : (
           <>
-            <h2 className={styles["login-form-title"]}>Login</h2>
-            <form onSubmit={handleSubmit} className={styles["login-form"]}>
-              {error && <div className={styles["error-message"]}>{error}</div>}
-              <div className={styles["form-group"]}>
-                <label htmlFor="email">Email</label>
+            <h2 className="font-bold text-2xl text-white text-center mb-5">Welcome Back </h2>
+            <form onSubmit={handleSubmit} className="w-full">
+              {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+              <div className="mb-4">
+                <label htmlFor="email" className="block font-bold text-white">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -76,10 +75,11 @@ const LoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
                 />
               </div>
-              <div className={styles["form-group"]}>
-                <label htmlFor="password">Password</label>
+              <div className="mb-4">
+                <label htmlFor="password" className="block font-bold text-white">Password</label>
                 <input
                   type="password"
                   id="password"
@@ -87,17 +87,20 @@ const LoginPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
                 />
               </div>
-              <button type="submit" className={styles["login-button"]}>Login</button>
+              <button type="submit" className="w-full p-2 bg-blue-500 text-white text-lg rounded-lg cursor-pointer hover:bg-blue-600 shadow-md">Login</button>
             </form>
+            <div className="mt-4 text-center">
+              <p className="text-white">New User? <a href="/signup" className="text-blue-400 underline hover:text-blue-500">Sign Up</a></p>
+            </div>
           </>
         )}
       </div>
-      <div className={styles.footer}>
-       <Footer/> 
+      <div className="pt-20">
+        {/* Footer can be added here */}
       </div>
-      
     </>
   );
 };

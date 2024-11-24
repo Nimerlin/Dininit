@@ -65,14 +65,14 @@ const SignupPage = () => {
   };
 
   return (
-    <div className={styles["login-container"]}>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit} className={styles["login-form"]}>
-        {error && <div className={styles["error-message"]}>{error}</div>}
-        {success && <div className={styles["success-message"]}>{success}</div>}
+    <div className="w-full max-w-md mx-auto p-5 rounded-lg bg-[rgba(123,129,145,0.16)] shadow-lg flex flex-col justify-start items-center mt-20 pb-5">
+      <h2 className="font-bold text-2xl text-white text-center mb-5">Sign Up</h2>
+      <form onSubmit={handleSubmit} className="w-full">
+        {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+        {success && <div className="text-green-500 text-sm text-center">{success}</div>}
         
-        <div className={styles["form-group"]}>
-          <label htmlFor="fullName">Full Name</label>
+        <div className="mb-4">
+          <label htmlFor="fullName" className="block font-bold text-white">Full Name</label>
           <input
             type="text"
             id="fullName"
@@ -80,11 +80,12 @@ const SignupPage = () => {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
+            className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
           />
         </div>
 
-        <div className={styles["form-group"]}>
-          <label htmlFor="email">Email</label>
+        <div className="mb-4">
+          <label htmlFor="email" className="block font-bold text-white">Email</label>
           <input
             type="email"
             id="email"
@@ -92,11 +93,12 @@ const SignupPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
           />
         </div>
 
-        <div className={styles["form-group"]}>
-          <label htmlFor="phoneNumber">Phone Number</label>
+        <div className="mb-4">
+          <label htmlFor="phoneNumber" className="block font-bold text-white">Phone Number</label>
           <input
             type="text"
             id="phoneNumber"
@@ -104,11 +106,12 @@ const SignupPage = () => {
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             required
+            className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
           />
         </div>
 
-        <div className={styles["form-group"]}>
-          <label htmlFor="address">Address</label>
+        <div className="mb-4">
+          <label htmlFor="address" className="block font-bold text-white">Address</label>
           <input
             type="text"
             id="address"
@@ -116,11 +119,12 @@ const SignupPage = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
+            className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
           />
         </div>
 
-        <div className={styles["form-group"]}>
-          <label htmlFor="password">Password</label>
+        <div className="mb-4">
+          <label htmlFor="password" className="block font-bold text-white">Password</label>
           <input
             type="password"
             id="password"
@@ -128,11 +132,12 @@ const SignupPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
           />
         </div>
 
-        <div className={styles["form-group"]}>
-          <label htmlFor="confirmPassword">Confirm Password</label>
+        <div className="mb-4">
+          <label htmlFor="confirmPassword" className="block font-bold text-white">Confirm Password</label>
           <input
             type="password"
             id="confirmPassword"
@@ -140,11 +145,15 @@ const SignupPage = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            className="w-full p-2 text-lg rounded-lg border border-[#222222] focus:border-[#020202] bg-[#7B7F91] bg-opacity-30 shadow-md"
           />
         </div>
 
-        <button type="submit" className={styles["login-button"]}>Sign Up</button>
+        <button type="submit" className="w-full p-2 bg-blue-500 text-white text-lg rounded-lg cursor-pointer hover:bg-blue-600 shadow-md">Sign Up</button>
       </form>
+      <div className="mt-4 text-center">
+        <p className="text-white">Already have an account? <a href="/login" className="text-blue-400 underline hover:text-blue-500">Login</a></p>
+      </div>
     </div>
   );
 };
