@@ -1,19 +1,22 @@
 /* login.module.css */
 
 .login-container {
-  width: 100%;
-  max-width: 400px; /* Limit the width of the login box */
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  width: 90%;
+  max-width: 450px;
+  margin: clamp(20px, 8vh, 60px) auto 0;
+  padding: clamp(20px, 5vw, 40px);
+  border: none;
+  border-radius: clamp(16px, 3vw, 24px);
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 1px 8px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: auto;
-  margin-top: 80px; /* Add margin to the top to create space from header */
+  position: relative;
+  overflow: hidden;
 }
 
 /* h2 {
@@ -26,20 +29,28 @@
 }
 
 .login-form .form-group {
-  margin-bottom: 15px;
+  margin-bottom: clamp(16px, 3vh, 24px);
+  position: relative;
+  width: 100%;
 }
 
 .login-form label {
   display: block;
-  font-weight: bold;
+  font-weight: 500;
+  margin-bottom: clamp(4px, 1vh, 8px);
+  color: #424242;
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  transition: all 0.2s ease;
 }
 
 .login-form input {
   width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: clamp(12px, 2vh, 14px) clamp(12px, 2vw, 16px);
+  font-size: clamp(14px, 2.5vw, 16px);
+  border-radius: clamp(8px, 2vw, 12px);
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
 }
 
 .login-form input:focus {
@@ -48,12 +59,12 @@
 
 .login-button {
   width: 100%;
-  padding: 10px;
+  padding: clamp(12px, 2vh, 16px);
   background-color: #00bfae;
   color: white;
-  font-size: 16px;
+  font-size: clamp(14px, 2.5vw, 16px);
   border: none;
-  border-radius: 5px;
+  border-radius: clamp(8px, 2vw, 12px);
   cursor: pointer;
 }
 
@@ -61,17 +72,81 @@
   background-color: #00796b;
 }
 
-.error-message {
-  color: red;
-  font-size: 14px;
-  text-align: center;
+.error-message,
+.success-message {
+  width: 100%;
+  padding: clamp(10px, 2vh, 12px) clamp(12px, 2vw, 16px);
+  font-size: clamp(13px, 2.5vw, 14px);
+  border-radius: clamp(8px, 2vw, 12px);
 }
 
-.success-message {
-  background-color: #d4edda;
-  color: #155724;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  text-align: center;
+/* Media Queries */
+@media screen and (max-width: 480px) {
+  .login-container {
+    width: 95%;
+    margin-top: 16px;
+  }
+  
+  .login-button {
+    padding: 14px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  
+  .login-form input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .login-container {
+    margin-top: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  
+  .login-form .form-group {
+    margin-bottom: 12px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .login-button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .login-button:active {
+    transform: scale(0.98);
+    background: linear-gradient(135deg, #00ab9c 0%, #1e88e5 100%);
+  }
+  
+  .login-form input:hover {
+    border-color: #e0e0e0;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .login-container {
+    background: linear-gradient(145deg, #2d2d2d, #252525);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.2),
+      0 1px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-form label {
+    color: #e0e0e0;
+  }
+
+  .login-form input {
+    background-color: #333333;
+    border-color: #404040;
+    color: #ffffff;
+  }
+
+  .login-form input:focus {
+    background-color: #3a3a3a;
+  }
 }

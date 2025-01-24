@@ -19,16 +19,16 @@
 import { createChatBotMessage } from "react-chatbot-kit";
 
 const config = {
-  botName: "IssueBot",
   initialMessages: [
-    createChatBotMessage("Hello! How can I assist you today?"),
+    createChatBotMessage("Hello! How can I help you today?"),
   ],
+  botName: "Support Bot",
   customStyles: {
     botMessageBox: {
-      backgroundColor: "#00bfae",
+      backgroundColor: "#376B7E",
     },
     chatButton: {
-      backgroundColor: "#00bfae",
+      backgroundColor: "#376B7E",
     },
   },
 };

@@ -13,7 +13,7 @@
     font-size: 2rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #5c5c5c;
+    color: #fffbfb;
   }
   
   .lightGreyBackground {
@@ -73,7 +73,14 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #343434;
+    background-color: #fffdfd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 
   .card:active {

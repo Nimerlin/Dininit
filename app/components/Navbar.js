@@ -72,24 +72,26 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <div className="flex space-x-6">
-          <Link href="/home">Home</Link>
+          <Link href="/">Home</Link>
           <Link href="/features">Features</Link>
           <Link href="/about">About</Link>
-          <Link href="/overview">Overview</Link>
+          {/* <Link href="/overview">Overview</Link> */}
           <Link href="/pricing">Pricing</Link>
-          <Link href="/team">Team</Link>
+          {/* <Link href="/team">Team</Link> */}
           <Link href="/contact">Contact</Link>
+          {user && <Link href="/ticket">Create Ticket</Link>}
+          {user && <Link href="/view-tickets">View Tickets</Link>}
         </div>
 
         {/* User Actions */}
-        <div className="flex space-x-4">
+        <div className="flex items-center space-x-4">
           {user ? (
             <>
-              <span className="font-medium">
+              <span className="font-medium text-lg">
                 Welcome, {user.username || user.name}!
               </span>
               <button
-                className="border border-white px-4 py-2 rounded"
+                className="px-6 py-2 border-2 border-white text-white hover:bg-white hover:text-black rounded-lg transition-all duration-300 font-medium"
                 onClick={handleLogout}
               >
                 Logout
@@ -98,13 +100,13 @@ export default function Navbar() {
           ) : (
             <>
               <button
-                className="border border-white px-4 py-2 rounded"
+                className="px-6 py-2 bg-white text-black hover:bg-transparent hover:text-white border-2 border-white rounded-lg transition-all duration-300 font-medium"
                 onClick={() => router.push("/login")}
               >
                 Login
               </button>
               <button
-                className="bg-white text-blue-900 px-4 py-2 rounded"
+                className="px-6 py-2 border-2 border-white text-white hover:bg-white hover:text-black rounded-lg transition-all duration-300 font-medium"
                 onClick={() => router.push("/signup")}
               >
                 Sign Up

@@ -32,33 +32,41 @@
   
 //   export default ActionProvider;
   
-const ActionProvider = ({ createChatBotMessage, setState }) => {
-    // Function to ask for issue type
-    const askForIssueType = () => {
-      const message = createChatBotMessage(
-        "What type of issue is it? (e.g., alert not triggering, data not updating)"
-      );
-      setState((prev) => ({
-        ...prev,
-        messages: [...prev.messages, message],
-      }));
-    };
-  
-    // Function to thank the user
-    const thankUser = () => {
-      const message = createChatBotMessage("Thank you for sharing the details!");
-      setState((prev) => ({
-        ...prev,
-        messages: [...prev.messages, message],
-      }));
-    };
-  
-    return [
-      { name: "askForIssueType", action: askForIssueType },
-      { name: "thankUser", action: thankUser },
-    ];
+class ActionProvider {
+  constructor(createChatBotMessage, setStateFunc) {
+    this.createChatBotMessage = createChatBotMessage;
+    this.setState = setStateFunc;
+  }
+
+  addMessageToState = (message) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      messages: [...prevState.messages, message],
+    }));
   };
-  
-  export default ActionProvider;
+
+  askForIssueType = () => {
+    const message = this.createChatBotMessage(
+      "What type of issue are you experiencing? (Alert/Data/Triggering/Updating)"
+    );
+    this.addMessageToState(message);
+  };
+
+  askForPriority = () => {
+    const message = this.createChatBotMessage(
+      "On a scale of 1-5, how urgent is this issue? (1 being lowest, 5 being highest)"
+    );
+    this.addMessageToState(message);
+  };
+
+  thankUser = () => {
+    const message = this.createChatBotMessage(
+      "Thank you for providing that information. I'll help you resolve this issue."
+    );
+    this.addMessageToState(message);
+  };
+}
+
+export default ActionProvider;
   
   

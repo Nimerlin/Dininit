@@ -28,16 +28,18 @@ router.post('/signup', async (req, res) => {
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create new user
+        // Create new user with user_level
         const newUser = {
             name,
             email,
             phone,
             password: hashedPassword,
+        //    user_level: 'normal_user', // Default user level
             createdAt: new Date()
         };
 
-        await users.insertOne(newUser);
+        const result = await users.insertOne(newUser);
+        console.log('Inserted user:', result);
         
         res.status(201).json({ message: 'User registered successfully' });
 

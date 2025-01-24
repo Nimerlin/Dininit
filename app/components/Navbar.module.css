@@ -1,39 +1,57 @@
 .navbar {
-    background-color: #1a202c;
+    background-color: rgba(26, 32, 44, 0.85);  /* More transparent for a lighter feel */
     color: white;
     position: sticky;
     top: 0;
     z-index: 1000;
-  }
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle border */
+    transition: all 0.3s ease;
+}
 
-  .alert {
+.navbar:hover {
+    background-color: rgba(26, 32, 44, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.alert {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #ffcc00; /* Warning yellow */
-    color: #000; /* Black text for contrast */
-    border: 1px solid #e6b800; /* Darker yellow border */
-    border-radius: 5px;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    background-color: #ffd700;  /* Warmer yellow */
+    color: #1a1a1a;  /* Darker text for better readability */
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12),
+                0 2px 4px rgba(0, 0, 0, 0.08);  /* Layered shadow for depth */
+    font-family: system-ui, -apple-system, sans-serif;  /* Modern system font stack */
     font-size: 14px;
     z-index: 1000;
     opacity: 1;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  }
-  
-  .alert.fade-out {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth easing */
+}
+
+.alert.fade-out {
     opacity: 0;
-    transform: translateY(-20px);
-  }
-  
-  .alert button {
+    transform: translateY(-20px) scale(0.95);  /* Added scale for smoother exit */
+}
+
+.alert button {
     background: none;
     border: none;
-    color: #000;
-    font-weight: bold;
-    margin-left: 10px;
+    color: #1a1a1a;
+    font-weight: 600;
+    margin-left: 12px;
     cursor: pointer;
-  }
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.alert button:hover {
+    background-color: rgba(0, 0, 0, 0.1);  /* Subtle hover effect */
+}
+
   

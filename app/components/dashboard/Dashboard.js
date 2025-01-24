@@ -28,8 +28,10 @@ const Dashboard = () => {
         {metrics.map((metric, index) => (
           <Panel key={index} data={metric} />
         ))}
+
       </div>
     </div>
+  
   );
 };
 
