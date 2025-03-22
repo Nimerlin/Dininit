@@ -5,9 +5,9 @@ name: Node.js Build Pipeline
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -24,10 +24,13 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
+
+      - name: Fix Dependency Conflicts (Downgrade React)
+        run: npm install react@18.2.0 react-dom@18.2.0 --legacy-peer-deps
 
       - name: Install Next.js
-        run: npm install next
+        run: npm install next --legacy-peer-deps
 
       - name: Build Project
         run: npm run build --if-present
