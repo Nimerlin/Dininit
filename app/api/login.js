@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb://localhost:27018";
+const uri = "mongodb://localhost:27017";
 const client = new MongoClient(uri);
 
 router.post('/login', async (req, res) => {
