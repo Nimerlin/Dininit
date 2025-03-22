@@ -90,9 +90,19 @@ jobs:
       - name: List Files After Downloading Build Artifacts
         run: ls -R  # Ensures all required files exist
 
-      - name: Build Docker Image
-        run: docker build -t my-app:latest .
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Push Docker Image (Optional)
-        run: docker push my-app:latest
-        if: github.event_name == 'push'
+      - name: Docker Login to ACR
+        run: az acr login --name ${{ secrets.ACR_NAME }}
+
+      - name: Set Docker Image Name
+        run: echo "IMAGE_NAME=${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest" >> $GITHUB_ENV
+
+      - name: Build Docker Image
+        run: docker build -t $IMAGE_NAME .
+
+      - name: Push Docker Image to ACR
+        run: docker push $IMAGE_NAME
