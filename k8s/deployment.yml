@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodejs-app
+  name: dinenit-ui-app
   labels:
-    app: nodejs-app
+    app: dinenit-ui-app
 spec:
   replicas: 2  # Adjust as needed
   selector:
     matchLabels:
-      app: nodejs-app
+      app: dinenit-ui-app
   template:
     metadata:
       labels:
-        app: nodejs-app
+        app: dinenit-ui-app
     spec:
       containers:
-        - name: nodejs-container
-          image: myacr.azurecr.io/my-app:latest  # Change to your ACR image
+        - name: dinenit-ui-container
+          image: dinenitacrprod.azurecr.io/dinenit-ui-app:latest  # Change to your ACR image
           ports:
             - containerPort: 3000
           env:

@@ -114,16 +114,16 @@ jobs:
         run: az acr show --name ${{ secrets.ACR_NAME }} --query "loginServer" --output tsv
 
       - name: Set Docker Image Name with Git SHA
-        run: echo "IMAGE_NAME=${{ secrets.ACR_NAME }}.azurecr.io/my-app:${{ github.sha }}" >> $GITHUB_ENV
+        run: echo "IMAGE_NAME=${{ secrets.ACR_NAME }}.azurecr.io/dinenit-ui-app:${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Build Docker Image
         run: docker build -t $IMAGE_NAME .
 
       - name: Push Docker Image to ACR
         run: |
-          docker tag $IMAGE_NAME ${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest
-          docker push ${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest
-          
+          docker tag $IMAGE_NAME ${{ secrets.ACR_NAME }}.azurecr.io/dinenit-ui-app:latest
+          docker push ${{ secrets.ACR_NAME }}.azurecr.io/dinenit-ui-app:latest
+
       # ✅ Verify if Image Exists in ACR
       - name: List Docker Images in ACR
         run: |
@@ -132,5 +132,42 @@ jobs:
 
       - name: Show Image Tags in ACR
         run: |
-          echo "Showing available tags for my-app:"
-          az acr repository show-tags --name ${{ secrets.ACR_NAME }} --repository my-app --output table
+          echo "Showing available tags for dinenit-ui-app:"
+          az acr repository show-tags --name ${{ secrets.ACR_NAME }} --repository dinenit-ui-app --output table
+
+  deploy-to-aks:
+    name: Deploy to AKS
+    runs-on: ubuntu-latest
+    needs: docker-build
+    permissions:
+      id-token: write
+      contents: read
+    environment: prod
+    steps:
+      # ✅ Azure Login
+      - name: Log in to Azure
+        run: |
+          az login --service-principal \
+            --username ${{ secrets.AZURE_CLIENT_ID }} \
+            --password ${{ secrets.AZURE_CLIENT_SECRET }} \
+            --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+      - name: Set Kubernetes Context
+        run: |
+          az aks get-credentials --resource-group ${{ secrets.AKS_RESOURCE_GROUP }} \
+            --name ${{ secrets.AKS_CLUSTER_NAME }}
+
+      - name: Verify Kubernetes Context
+        run: kubectl cluster-info
+
+      # ✅ Replace Image Tag in Manifest Files
+      - name: Update Kubernetes Deployment Image
+        run: |
+          sed -i "s|IMAGE_PLACEHOLDER|${{ secrets.ACR_NAME }}.azurecr.io/dinenit-ui-app:${{ github.sha }}|g" deployment.yml
+
+      - name: Apply Kubernetes Manifests
+        run: |
+          kubectl apply -f k8s/
+
+      - name: Verify Deployment
+        run: kubectl get pods -o wide
