@@ -4,7 +4,10 @@ metadata:
   name: nodejs-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Disable HTTPS redirection (if needed)
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"  # Ensures HTTP traffic is routed properly
 spec:
+  ingressClassName: nginx  # Ensures this Ingress is handled by NGINX
   rules:
     - http:
         paths:
