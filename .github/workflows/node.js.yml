@@ -2,7 +2,7 @@ name: Node.js Build & Docker Build Pipeline
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "prod" ]
   workflow_dispatch:
 
 jobs:
