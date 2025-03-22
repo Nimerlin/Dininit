@@ -100,7 +100,4 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
-        output: results.sarif  # Save results in SARIF format
-    
-    - name: Display CodeQL Findings
-      run: cat results.sarif
+        
