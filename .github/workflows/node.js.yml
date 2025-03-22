@@ -56,7 +56,10 @@ jobs:
         run: ls -R  # Ensures node_modules and all files exist
 
       - name: Build Project
-        run: npm run build --if-present
+        run: npm run build --if-present || (echo "BUILD FAILED" && exit 1)
+        
+      - name: Verify Build Output
+        run: ls -R .next || echo ".next folder NOT FOUND!"
 
       - name: List Files After Build
         run: ls -R  # Verifies all build outputs
