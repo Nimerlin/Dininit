@@ -64,17 +64,14 @@ jobs:
       - name: List Files After Build
         run: ls -R  # Verifies all build outputs
 
+      - name: Create Tar Archive
+        run: tar -cvf node-build.tar package.json package-lock.json .next/ public/ next.config.mjs server.js
+
       - name: Upload Build Artifacts (Only Required Files)
         uses: actions/upload-artifact@v4
         with:
           name: node-build
-          path: |
-            package.json
-            package-lock.json
-            .next/
-            public/
-            next.config.mjs
-            server.js
+          path: node-build.tar
 
   docker-build:
     name: Docker Build
@@ -86,6 +83,9 @@ jobs:
         with:
           name: node-build
           path: .
+          
+      - name: Extract Tar Archive
+        run: tar -xvf node-build.tar
 
       - name: List Files After Downloading Build Artifacts
         run: ls -R  # Ensures all required files exist
