@@ -6,8 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: myapp.example.com  # Change to your domain or use an IP
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
