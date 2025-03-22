@@ -156,7 +156,10 @@ jobs:
         with:
           name: k8s-folder
           path: .
-          
+
+      - name: List Files After Downloading Source Code
+        run: ls -R   
+         
       # ✅ Azure Login
       - name: Log in to Azure
         run: |
