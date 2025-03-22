@@ -14,13 +14,22 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Upload Source Code
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-code
+          path: .  # Uploads all project files
+
   dependencies:
     name: Install Dependencies
     runs-on: ubuntu-latest
-    needs: clone  # This job depends on the clone job
+    needs: clone  # Depends on the clone job
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: Download Source Code
+        uses: actions/download-artifact@v4
+        with:
+          name: source-code
+          path: .
 
       - name: Set Up Node.js
         uses: actions/setup-node@v4
@@ -37,26 +46,22 @@ jobs:
       - name: Install Next.js
         run: npm install next --legacy-peer-deps
 
-      - name: Cache Node Modules
-        uses: actions/cache@v4
+      - name: Upload Dependencies
+        uses: actions/upload-artifact@v4
         with:
-          path: node_modules
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-${{ runner.os }}-
+          name: node-dependencies
+          path: .  # Upload everything including node_modules
 
   build:
     name: Build Project
     runs-on: ubuntu-latest
-    needs: dependencies  # Depends on dependencies being installed first
+    needs: dependencies  # Depends on dependencies job
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Restore Cached Node Modules
-        uses: actions/cache@v4
+      - name: Download Dependencies
+        uses: actions/download-artifact@v4
         with:
-          path: node_modules
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          name: node-dependencies
+          path: .
 
       - name: Build Project
         run: npm run build --if-present
@@ -65,21 +70,18 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-build
-          path: .  # Adjust if needed
+          path: .  # Upload built files
 
   docker-build:
     name: Docker Build
     runs-on: ubuntu-latest
     needs: build  # Depends on the build job finishing
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4
         with:
           name: node-build
-          path: .  # Adjust if needed
+          path: .
 
       - name: Set Up Docker
         run: |
