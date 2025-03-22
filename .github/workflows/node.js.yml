@@ -14,6 +14,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: List Files After Checkout
+        run: ls -R  # Lists all files after cloning
+
       - name: Upload Source Code
         uses: actions/upload-artifact@v4
         with:
@@ -23,13 +26,16 @@ jobs:
   build:
     name: Install Dependencies & Build
     runs-on: ubuntu-latest
-    needs: clone  # Depends on the clone job
+    needs: clone
     steps:
       - name: Download Source Code
         uses: actions/download-artifact@v4
         with:
           name: source-code
           path: .
+
+      - name: List Files After Downloading Source Code
+        run: ls -R  # Verifies all files were downloaded
 
       - name: Set Up Node.js
         uses: actions/setup-node@v4
@@ -46,25 +52,34 @@ jobs:
       - name: Install Next.js
         run: npm install next --legacy-peer-deps
 
+      - name: List Files After Installing Dependencies
+        run: ls -R  # Ensures node_modules and all files exist
+
       - name: Build Project
         run: npm run build --if-present
+
+      - name: List Files After Build
+        run: ls -R  # Verifies all build outputs
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: node-build
-          path: .  # Uploads the built files
+          path: .  # Uploads everything, including the build output
 
   docker-build:
     name: Docker Build
     runs-on: ubuntu-latest
-    needs: build  # Depends on the build job finishing
+    needs: build
     steps:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4
         with:
           name: node-build
           path: .
+
+      - name: List Files After Downloading Build Artifacts
+        run: ls -R  # Ensures all required files exist
 
       - name: Build Docker Image
         run: docker build -t my-app:latest .
