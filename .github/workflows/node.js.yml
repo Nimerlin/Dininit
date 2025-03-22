@@ -1,8 +1,6 @@
 name: Node.js Build & Docker Build Pipeline
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
