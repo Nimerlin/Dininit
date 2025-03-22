@@ -121,6 +121,16 @@ jobs:
 
       - name: Push Docker Image to ACR
         run: |
-          docker push $IMAGE_NAME
           docker tag $IMAGE_NAME ${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest
           docker push ${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest
+          
+      # ✅ Verify if Image Exists in ACR
+      - name: List Docker Images in ACR
+        run: |
+          echo "Listing images in ACR:"
+          az acr repository list --name ${{ secrets.ACR_NAME }} --output table
+
+      - name: Show Image Tags in ACR
+        run: |
+          echo "Showing available tags for my-app:"
+          az acr repository show-tags --name ${{ secrets.ACR_NAME }} --repository my-app --output table
