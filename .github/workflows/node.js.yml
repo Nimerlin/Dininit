@@ -176,10 +176,10 @@ jobs:
       - name: Verify Kubernetes Context
         run: kubectl cluster-info
 
-      # ✅ Replace Image Tag in Manifest Files
-      - name: Update Kubernetes Deployment Image
-        run: |
-          sed -i "s|IMAGE_PLACEHOLDER|${{ secrets.ACR_NAME }}.azurecr.io/dinenit-ui-app:${{ github.sha }}|g" deployment.yml
+      # # ✅ Replace Image Tag in Manifest Files
+      # - name: Update Kubernetes Deployment Image
+      #   run: |
+      #     sed -i "s|IMAGE_PLACEHOLDER|${{ secrets.ACR_NAME }}.azurecr.io/dinenit-ui-app:${{ github.sha }}|g" deployment.yml
 
       - name: Apply Kubernetes Manifests
         run: |
