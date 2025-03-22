@@ -95,21 +95,32 @@ jobs:
       - name: List Files After Downloading Build Artifacts
         run: ls -R  # Ensures all required files exist
 
+      # ✅ Azure Login Using Client Secret
       - name: Log in to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        run: |
+          az login --service-principal \
+            --username ${{ secrets.AZURE_CLIENT_ID }} \
+            --password ${{ secrets.AZURE_CLIENT_SECRET }} \
+            --tenant ${{ secrets.AZURE_TENANT_ID }}
 
+      - name: Verify Azure Subscription
+        run: az account show --output table
+
+      # ✅ Docker Login to ACR
       - name: Docker Login to ACR
         run: az acr login --name ${{ secrets.ACR_NAME }}
 
-      - name: Set Docker Image Name
-        run: echo "IMAGE_NAME=${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest" >> $GITHUB_ENV
+      - name: Verify ACR Login
+        run: az acr show --name ${{ secrets.ACR_NAME }} --query "loginServer" --output tsv
+
+      - name: Set Docker Image Name with Git SHA
+        run: echo "IMAGE_NAME=${{ secrets.ACR_NAME }}.azurecr.io/my-app:${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Build Docker Image
         run: docker build -t $IMAGE_NAME .
 
       - name: Push Docker Image to ACR
-        run: docker push $IMAGE_NAME
+        run: |
+          docker push $IMAGE_NAME
+          docker tag $IMAGE_NAME ${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest
+          docker push ${{ secrets.ACR_NAME }}.azurecr.io/my-app:latest
