@@ -92,10 +92,12 @@ jobs:
       - name: List Files After Downloading Build Artifacts
         run: ls -R  # Ensures all required files exist
 
-      - name: Azure Login
+      - name: Log in to Azure
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Docker Login to ACR
         run: az acr login --name ${{ secrets.ACR_NAME }}
