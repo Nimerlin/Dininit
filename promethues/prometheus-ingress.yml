@@ -9,10 +9,9 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: prometheus.local  # Change this to your actual domain if needed
-      http:
+    - http:  # Corrected indentation
         paths:
-          - path: /prometheus(/|$)(.*)
+          - path: /prometheus/api
             pathType: Prefix
             backend:
               service:
