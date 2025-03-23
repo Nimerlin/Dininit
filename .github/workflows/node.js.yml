@@ -146,7 +146,7 @@ jobs:
           path: promethues/
 
   deploy-ui-to-aks:
-    name: Deploy to AKS
+    name: Deploy UI to AKS
     runs-on: ubuntu-latest
     needs: docker-build
     permissions:
@@ -193,9 +193,9 @@ jobs:
         run: kubectl get pods -o wide
   
   deploy-promethues-to-aks:
-    name: Deploy to AKS
+    name: Deploy Promethues & cAdvisor to AKS
     runs-on: ubuntu-latest
-    needs: docker-build
+    needs: deploy-ui-to-aks
     permissions:
       id-token: write
       contents: read
