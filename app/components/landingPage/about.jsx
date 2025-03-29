@@ -25,7 +25,7 @@ const Aboutsection = () => {
         }
     }, [isLoading]);
     return (
-        <section className={`bg-blue-900 min-h-screen py-16`}>
+        <section className={` min-h-screen py-16`}>
                 <h2 className="text-4xl font-semibold text-center mb-8 text-white">About Dinenit</h2>
                 <p className="text-lg max-w-3xl mx-auto text-center mb-6 text-white">
                     Dinenit is an open-source monitoring tool for tracking your systems, servers, and applications. Visualize real-time performance metrics, receive alerts, and optimize your infrastructure effortlessly.

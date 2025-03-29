@@ -21,7 +21,7 @@ const DetailsPage = () => {
   }, []);
 
   return (
-    <div className="bg-blue-900 pb-20">
+    <div  className="pb-20">
       {/* Details Section */}
       <div className="flex flex-wrap justify-between items-center">
         {/* Content Section */}
