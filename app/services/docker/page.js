@@ -14,6 +14,7 @@ import {
 } from "./api/prometheus"; // Prometheus fetching logic
 import DockerLayout from "./layout"; // Import the custom DockerLayout component
 
+
 export default function DockerPage() {
   const [metrics, setMetrics] = useState({
     cpu: [],
@@ -93,19 +94,20 @@ export default function DockerPage() {
     </div>
   );
 
-  if (loading) {
-    return (
-      <DockerLayout>
-        <h1 className="text-3xl text-white font-semibold mb-8">
-          Docker Monitoring Dashboard
-        </h1>
-        <div className="text-white text-center">Loading metrics...</div>
-      </DockerLayout>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <DockerLayout>
+  //       <h1 className="text-3xl text-white font-semibold mb-8">
+  //         Docker Monitoring Dashboard
+  //       </h1>
+  //       <div className="text-white text-center">Loading metrics...</div>
+  //     </DockerLayout>
+  //   );
+  // }
 
   return (
     <div>
+      
       <h1 className="text-3xl text-white font-semibold mb-8">
         Docker Monitoring Dashboard
       </h1>
