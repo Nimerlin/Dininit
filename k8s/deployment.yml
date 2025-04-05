@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dinenit-ui-container
-          image: dinenitacrprod.azurecr.io/dinenit-ui-app:latest  # Change to your ACR image
+          image: dinenitacrdev.azurecr.io/dinenit-ui-app:latest  # Change to your ACR image
           ports:
             - containerPort: 3000
           env:

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import styles from './LandingPage.module.css'; // Import the CSS module
 import gsap from "gsap"; // GSAP for animations
 
+
 export default function LandingPage() {
   useEffect(() => {
     // GSAP animations for LandingPage sections

@@ -73,12 +73,12 @@ export default function Navbar() {
         {/* Navigation Links */}
         <div className="flex space-x-6">
           <Link href="/">Home</Link>
-          <Link href="/features">Features</Link>
-          <Link href="/about">About</Link>
+          <Link href="#features">Features</Link>
+          <Link href="#about">About</Link>
           {/* <Link href="/overview">Overview</Link> */}
-          <Link href="/pricing">Pricing</Link>
+          <Link href="#pricing">Pricing</Link>
           {/* <Link href="/team">Team</Link> */}
-          <Link href="/contact">Contact</Link>
+          <Link href="#contact">Contact</Link>
           {user && <Link href="/ticket">Create Ticket</Link>}
           {user && <Link href="/view-tickets">View Tickets</Link>}
         </div>
