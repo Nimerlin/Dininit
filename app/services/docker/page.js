@@ -70,7 +70,7 @@ export default function DockerPage() {
       <table className="w-full table-auto text-white">
         <thead>
           <tr>
-            <th className="px-4 py-2">Metric Name</th>
+            <th className="px-4 py-2">Metric Name </th>
             <th className="px-4 py-2">Value</th>
             <th className="px-4 py-2">Labels</th>
           </tr>
