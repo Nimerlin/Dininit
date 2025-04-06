@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const prometheusURL = "http://134.33.209.33/prometheus/api"; // Adjust this to your Prometheus server URL
+const prometheusURL = "http://10.1.38.67:9090"; // Adjust this to your Prometheus server URL
 
 /**
  * Generic function to fetch metrics from Prometheus.
