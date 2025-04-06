@@ -1,24 +1,24 @@
 # Use official Node.js runtime as base image
 FROM node:18-alpine
 
-# Set working directory
+# Set working directory and install curl
 WORKDIR /app
+RUN apk add --no-cache curl
 
-# Copy package files and install only production dependencies
+# Copy all necessary files and install dependencies in one go
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
 
-# Copy necessary files and folders
+# Copy build and runtime files
 COPY .next .next
 COPY public public
-COPY next.config.mjs .  
-COPY server.js .
+COPY next.config.mjs .
 
-# Set environment variable for production
+# Set environment variable
 ENV NODE_ENV=production
 
-# Expose the port Next.js runs on
+# Expose app port
 EXPOSE 3000
 
-# Command to start the app
+# Start the application
 CMD ["npm", "run", "start"]
