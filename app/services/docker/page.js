@@ -108,9 +108,7 @@ export default function DockerPage() {
   return (
     <div>
       
-      <h1 className="text-3xl text-white font-semibold mb-8">
-        Docker Monitoring Dashboard
-      </h1>
+      <h1 className="text-3xl text-white font-semibold mb-8">Docker Monitoring Dashboard</h1>
 
       {renderMetricsTable("CPU Usage", metrics.cpu)}
       {renderMetricsTable("Memory Usage", metrics.memory)}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from 'next/link'; // Import Link component from Next.js
 import styles from "./login.module.css"; // Import CSS Module
 import Navbar from '../components/Navbar';
 
@@ -103,6 +104,9 @@ const LoginPage = () => {
               </div>
 
               <button type="submit" className={styles["login-button"]}>Login</button>
+              <div className={styles["signup-link"]}>
+               Don't have an account?  <Link href="/signup"> Sign up</Link>
+              </div>
             </form>
           </>
         )}
@@ -112,4 +116,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
- 

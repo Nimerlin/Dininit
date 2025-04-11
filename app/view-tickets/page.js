@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import styles from './view-tickets.module.css'; // Ensure this path is correct
+import Navbar from '../components/Navbar';
 
 const TicketsPage = () => {
     const [tickets, setTickets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false); 
-   // Add authentication state
+    // Add authentication state
 
     useEffect(() => {
         const userString = localStorage.getItem('user'); // Retrieve user from local storage
@@ -44,7 +45,6 @@ const TicketsPage = () => {
             }
         };
 
-        
         fetchTickets();
     }, [isAuthenticated]);
 
@@ -56,37 +56,42 @@ const TicketsPage = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className={styles.ticketsPage}>
-            <h1> Your Tickets</h1>
-            <table className={styles.ticketsTable}>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Priority</th>
-                        <th>Attachment</th>
-                        <th>Ticket Number</th>
-                        <th>User</th>
-                        <th>Created At</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tickets.map((ticket, index) => (
-                        <tr key={ticket.id || index} className={styles.ticketRow}>
-                            <td>{ticket.title}</td>
-                            <td>{ticket.description}</td>
-                            <td>{ticket.category}</td>
-                            <td>{ticket.priority}</td>
-                            <td>{ticket.attachment ? <a href={ticket.attachment}>View</a> : 'None'}</td>
-                            <td>{ticket.ticket_number}</td>
-                            <td>{ticket.user}</td>
-                            <td>{new Date(ticket.created_at).toLocaleString()}</td>
+        <>
+            <Navbar /> {/* Add Navbar component here */}
+            <div className={styles.ticketsPage}>
+                <h1>Your Tickets</h1>
+                <table className={styles.ticketsTable}>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Priority</th>
+                            <th>Attachment</th>
+                            <th>Ticket Number</th>
+                            <th>User</th>
+                            <th>Created At</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {tickets.map((ticket, index) => (
+                            <tr key={ticket.id || index} className={styles.ticketRow}>
+                                <td>{ticket.title}</td>
+                                <td>{ticket.description}</td>
+                                <td>{ticket.category}</td>
+                                <td>{ticket.priority}</td>
+                                <td>{ticket.attachment ? <a href={ticket.attachment}>View</a> : 'None'}</td>
+                                <td>{ticket.ticket_number}</td>
+                                <td>{ticket.user}</td>
+                                <td>{new Date(ticket.created_at).toLocaleString()}</td>
+                                <td> <a href={`/view-tickets/view/?ticket_number=${ticket.ticket_number}`}>View</a></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
     );
 };
 

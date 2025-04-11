@@ -9,7 +9,7 @@ function PaymentFailedContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [authChecked, setAuthChecked] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const paymentId = searchParams.get("paymentId");
 
@@ -40,6 +40,16 @@ function PaymentFailedContent() {
     getUserFromStorage();
   }, [router]);
 
+  useEffect(() => {
+    if (authChecked && !error) {
+      const timer = setTimeout(() => {
+        router.replace("/payment");
+      }, 5000); // redirect after 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [authChecked, error, router]);
+
   if (isLoading) {
     return <div className={styles.container}>Loading...</div>;
   }
@@ -52,13 +62,15 @@ function PaymentFailedContent() {
     return null;
   }
 
+  
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <h1 className={styles.heading}>Payment Failed</h1>
         <div className={styles.icon}>❌</div>
         <p className={styles.message}>
-          Your payment was cancelled or interrupted.
+          Your payment was cancelled or interrupted. Redirecting to Payment page in 5 sec..
         </p>
         {paymentId && <p className={styles.paymentId}>Payment ID: {paymentId}</p>}
       </div>

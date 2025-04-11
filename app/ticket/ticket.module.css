@@ -205,16 +205,17 @@
   --danger-red-dark: #c0392b;
   --success-green: #2ecc71;
   --white: #ffffff;
-  
+
   /* Spacing */
   --spacing-sm: 12px;
   --spacing-md: 20px;
   --spacing-lg: 40px;
-  
+
   /* Border radius */
   --radius-sm: 4px;
   --radius-md: 8px;
 }
+
 .alert {
   padding: 15px;
   margin: 10px 0;
