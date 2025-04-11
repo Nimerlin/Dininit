@@ -8,7 +8,9 @@ const TicketsPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false); 
-    // Add authentication state
+
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+   // Add authentication state
 
     useEffect(() => {
         const userString = localStorage.getItem('user'); // Retrieve user from local storage
@@ -22,7 +24,7 @@ const TicketsPage = () => {
 
         const fetchTickets = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/view-tickets', {
+                const response = await fetch(`${apiBaseUrl}/view-tickets`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
