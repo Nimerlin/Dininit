@@ -37,7 +37,7 @@ export default function Header() {
           <p className="header-subtitle text-2xl mb-8">Contained is by middleton am. Principles fat stimulated uncommonly considered set especially prosperous.</p>
           <a href="#learn-more">
             <button className="cta-button border border-white py-3 px-8 text-2xl rounded-lg hover:bg-white hover:text-blue-900 transition-all duration-200">
-              Learn More
+              Know More
             </button>
           </a>
         </div>

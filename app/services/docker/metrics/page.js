@@ -1,4 +1,4 @@
-"use client"; // To ensure compatibility with React hooks
+"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -28,19 +28,20 @@ export default function DockerPage() {
   });
 
   const [loading, setLoading] = useState(true);
+  const [selectedEnv, setSelectedEnv] = useState("");
 
   useEffect(() => {
     const fetchAllMetrics = async () => {
       try {
-        const cpu = await fetchCPUUsage();
-        const memory = await fetchMemoryUsage();
-        const memoryLimit = await fetchMemoryLimit();
-        const networkReceive = await fetchNetworkReceive();
-        const networkTransmit = await fetchNetworkTransmit();
-        const filesystemUsage = await fetchFilesystemUsage();
-        const filesystemLimit = await fetchFilesystemLimit();
-        const ioRead = await fetchIORead();
-        const ioWrite = await fetchIOWrite();
+        const cpu = await fetchCPUUsage(selectedEnv);
+        const memory = await fetchMemoryUsage(selectedEnv);
+        const memoryLimit = await fetchMemoryLimit(selectedEnv);
+        const networkReceive = await fetchNetworkReceive(selectedEnv);
+        const networkTransmit = await fetchNetworkTransmit(selectedEnv);
+        const filesystemUsage = await fetchFilesystemUsage(selectedEnv);
+        const filesystemLimit = await fetchFilesystemLimit(selectedEnv);
+        const ioRead = await fetchIORead(selectedEnv);
+        const ioWrite = await fetchIOWrite(selectedEnv);
 
         setMetrics({
           cpu,
@@ -61,7 +62,7 @@ export default function DockerPage() {
     };
 
     fetchAllMetrics();
-  }, []);
+  }, [selectedEnv]);
 
   const renderMetricsTable = (title, data) => (
     <div className="bg-gray-800 p-6 rounded-lg shadow-md mb-6">
@@ -109,6 +110,17 @@ export default function DockerPage() {
       <h1 className="text-3xl text-white font-semibold mb-8">
         Docker Monitoring Dashboard
       </h1>
+
+      <div className="mb-4">
+        <label className="text-white mr-2">Filter by Environment:</label>
+        <input
+          type="text"
+          value={selectedEnv}
+          onChange={(e) => setSelectedEnv(e.target.value)}
+          placeholder="e.g., prod, staging"
+          className="p-2 rounded border border-gray-400"
+        />
+      </div>
 
       {renderMetricsTable("CPU Usage", metrics.cpu)}
       {renderMetricsTable("Memory Usage", metrics.memory)}
