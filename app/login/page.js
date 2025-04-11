@@ -13,10 +13,12 @@ const LoginPage = () => {
   const [username, setUsername] = useState(null);
   const router = useRouter();
 
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/login", { 
+      const response = await axios.post(`${apiBaseUrl}/login`, { 
         email, 
         password 
       });
