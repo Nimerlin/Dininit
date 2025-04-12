@@ -2,7 +2,7 @@
 import Sidenavbar from "../../components/Sidenavbar";
 import { Inter } from "next/font/google";
 import styles from "../styles/Services.module.css";
-import UserNavbar from "@/app/components/dashboard/userNavbar";
+import UserNavbar from "/app/components/dashboard/userNavbar";
 
 // Apply Inter font globally
 const inter = Inter({ subsets: ["latin"] });

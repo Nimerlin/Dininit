@@ -74,7 +74,7 @@ const LoginPage = () => {
           </div>
         ) : (
           <>
-            <h2>Login</h2>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit} className={styles["login-form"]}>
               {error && <div className={styles["error-message"]}>{error}</div>}
               

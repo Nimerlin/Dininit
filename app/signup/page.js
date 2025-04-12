@@ -66,7 +66,11 @@ const SignupPage = () => {
   };
 
   return (
+    <div>
+      <Navbar />
+    
     <div className="w-full max-w-md mx-auto p-5 rounded-lg bg-[rgba(123,129,145,0.16)] shadow-lg flex flex-col justify-start items-center mt-20 pb-5">
+      
       <h2 className="font-bold text-2xl text-white text-center mb-5">Sign Up</h2>
       <form onSubmit={handleSubmit} className="w-full">
         {error && <div className="text-red-500 text-sm text-center">{error}</div>}
@@ -155,6 +159,7 @@ const SignupPage = () => {
       <div className="mt-4 text-center">
         <p className="text-white">Already have an account? <a href="/login" className="text-blue-400 underline hover:text-blue-500">Login</a></p>
       </div>
+    </div>
     </div>
   );
 };

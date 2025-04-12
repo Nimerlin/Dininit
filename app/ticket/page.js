@@ -1,6 +1,7 @@
 "use client"; // Ensure it's treated as a client component
 
 import React, { useState, useEffect } from 'react';
+import Navbar from '../components/Navbar';
 import styles from './ticket.module.css'; // Import CSS Module
 //import './App.css'; // Import global styles
 
@@ -88,6 +89,7 @@ export default function TicketPage() {
 
   return (
     <div className={styles.container}>
+      <Navbar />
       <div className={styles.formWrapper}>
         <h1 className={styles.title}>Raise a Ticket</h1>
         <p className={styles.subtitle}>Submit your request and we'll get back to you as soon as possible.</p>
