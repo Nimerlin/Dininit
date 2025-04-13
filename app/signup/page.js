@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import styles from "./login.module.css"; // Import CSS Module
 import Navbar from '../components/Navbar'; // Import Navbar component
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 const SignupPage = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ const SignupPage = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/api/signup", {
+      const response = await axios.post(`${apiBaseUrl}/signup`, {
         name: fullName,
         email,
         phone: phoneNumber,

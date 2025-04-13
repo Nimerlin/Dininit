@@ -4,6 +4,8 @@ import { useSearchParams } from "next/navigation";
 import styles from './view.module.css'; // Import the CSS module
 import Navbar from '../../components/Navbar'; // Ensure the path to Navbar is correct
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 const TicketDetailPage = () => {
     const searchParams = useSearchParams();
     const ticket_number = searchParams.get("ticket_number");
@@ -15,7 +17,7 @@ const TicketDetailPage = () => {
     useEffect(() => {
         const fetchTicket = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/api/view-tickets?ticket_number=${ticket_number}`, {
+                const response = await fetch(`${apiBaseUrl}/view-tickets?ticket_number=${ticket_number}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

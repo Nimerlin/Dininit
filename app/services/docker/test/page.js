@@ -103,7 +103,7 @@ export default function DockerDashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white p-8 space-y-8">
+   <div className="text-white p-8 space-y-8">
       <h1 className="text-4xl font-bold">Docker Monitoring Dashboard</h1>
       <input
         type="text"

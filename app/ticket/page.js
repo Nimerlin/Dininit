@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import styles from './ticket.module.css'; // Import CSS Module
-import Navbar from '../components/Navbar'; // Import Navbar component
+
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function TicketPage() {
   // State variables
@@ -42,7 +43,7 @@ export default function TicketPage() {
     const updatedFormData = { ...formData, ticket_number: ticketNumber };
 
     try {
-      const response = await fetch('http://localhost:3001/api/ticket', {
+      const response = await fetch(`${apiBaseUrl}/ticket`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

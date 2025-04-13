@@ -15,6 +15,7 @@ const LoginPage = () => {
   const router = useRouter();
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const uiBaseUrl = process.env.NEXT_PUBLIC_UI_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,16 +33,16 @@ const LoginPage = () => {
         setUsername(response.data.user.username || response.data.user.name);
         
         // Check subscription status
-        const subscriptionResponse = await axios.post("http://localhost:3001/api/verify-subscription", {
+        const subscriptionResponse = await axios.post(`${apiBaseUrl}//verify-subscription`, {
           userId: response.data.user.name
         });
 
         // Redirect based on subscription status
         setTimeout(() => {
           if (subscriptionResponse.data.subscribed === 'yes') {
-            router.push("http://localhost:3000/services");
+            router.push(`${uiBaseUrl}/services`);
           } else {
-            router.push("http://localhost:3000/payment");
+            router.push(`${apiBaseUrl}/payment`);
           }
         }, 1500);
       } else {
@@ -66,7 +67,6 @@ const LoginPage = () => {
 
   return (
     <>
-      <Navbar />
       <div className={styles["login-container"]}>
         {username ? (
           <div className={styles["welcome-message"]}>

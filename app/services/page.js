@@ -8,6 +8,8 @@ import KubernetesMonitor from '../components/Services/KubernetesMonitor';
 import styles from './styles/Services.module.css';
 import Navbar from '../components/Navbar';
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Services() {
   // Hooks
   const router = useRouter();
@@ -29,7 +31,7 @@ export default function Services() {
 
         const user = JSON.parse(storedUser);
         
-        const response = await fetch('http://localhost:3001/api/verify-subscription', {
+        const response = await fetch(`${apiBaseUrl}/verify-subscription`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -73,32 +75,29 @@ export default function Services() {
   // Main Render
   return (
     <div className={styles.container}>
-      <Navbar />
-      <div className={styles.lightGreyBackground} style={{ marginTop: '20px' }}>
         <h1 className={styles.title}>Services Monitoring</h1>
         <div className={styles.greyBox}>
           <div className={styles.cardGrid}>
             <div 
               className={`${styles.card} ${styles.greyBackground}`} 
-              onClick={() => router.push('/services/docker')}
+              onClick={() => router.push('/services/docker/docker')}
             >
               <MicroservicesMonitor />
             </div>
             <div 
               className={`${styles.card} ${styles.greyBackground}`} 
-              onClick={() => router.push('/services/docker')}
+              onClick={() => router.push('/services/docker/kube')}
             >
               <KubernetesMonitor />
             </div>
             <div 
               className={`${styles.card} ${styles.greyBackground}`} 
-              onClick={() => router.push('/services/docker')}
+              onClick={() => router.push('/services/docker/server')}
             >
               <ServersMonitor />
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }

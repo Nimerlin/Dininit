@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "./Navbar.module.css";
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -54,14 +56,14 @@ export default function Navbar() {
     setUser(null);
 
     setTimeout(() => {
-      router.push("http://localhost:3000");
+      router.push(`${apiBaseUrl}`);
     }, 1500);
   };
 
   return (
     <nav
       className={`sticky top-0 z-50 ${
-        scrolled ? "bg-[#02194e]" : "bg-transparent"
+        scrolled ? "bg-[#242424]" : "bg-transparent"
       } text-white w-full transition-colors duration-300`}
     >
       <div className="container mx-auto flex justify-between items-center py-4">
