@@ -152,38 +152,42 @@ const TicketsPage = () => {
     if (error) return <div className={styles.error}>{error}</div>;
 
     return (
-        <div className={styles.darkContainer}>
-            <Navbar />
-            <h1 className={styles.heading}>Your Tickets</h1>
-            <table className={styles.ticketsTable}>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Priority</th>
-                        <th>Attachment</th>
-                        <th>Ticket Number</th>
-                        <th>User</th>
-                        <th>Created At</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tickets.map((ticket, index) => (
-                        <tr key={ticket.id || index} className={styles.ticketRow}>
-                            <td>{ticket.title}</td>
-                            <td>{ticket.description}</td>
-                            <td>{ticket.category}</td>
-                            <td>{ticket.priority}</td>
-                            <td>{ticket.attachment ? <a href={ticket.attachment}>View</a> : 'None'}</td>
-                            <td>{ticket.ticket_number}</td>
-                            <td>{ticket.user}</td>
-                            <td>{new Date(ticket.created_at).toLocaleString()}</td>
+        <>
+            <Navbar /> {/* Add Navbar component here */}
+            <div className={styles.ticketsPage}>
+                <h1>Your Tickets</h1>
+                <table className={styles.ticketsTable}>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Priority</th>
+                            <th>Attachment</th>
+                            <th>Ticket Number</th>
+                            <th>User</th>
+                            <th>Created At</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {tickets.map((ticket, index) => (
+                            <tr key={ticket.id || index} className={styles.ticketRow}>
+                                <td>{ticket.title}</td>
+                                <td>{ticket.description}</td>
+                                <td>{ticket.category}</td>
+                                <td>{ticket.priority}</td>
+                                <td>{ticket.attachment ? <a href={ticket.attachment}>View</a> : 'None'}</td>
+                                <td>{ticket.ticket_number}</td>
+                                <td>{ticket.user}</td>
+                                <td>{new Date(ticket.created_at).toLocaleString()}</td>
+                                <td> <a href={`/view-tickets/view/?ticket_number=${ticket.ticket_number}`}>View</a></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
     );
 };
 

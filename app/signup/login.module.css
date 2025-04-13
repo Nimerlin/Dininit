@@ -1,13 +1,12 @@
-/* login.module.css */
 
-.login-container {
+.signupContainer {
   width: 90%;
   max-width: 450px;
   margin: clamp(20px, 8vh, 60px) auto 0;
   padding: clamp(20px, 5vw, 40px);
   border: none;
   border-radius: clamp(16px, 3vw, 24px);
-  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.1),
     0 1px 8px rgba(0, 0, 0, 0.06);
@@ -19,22 +18,25 @@
   overflow: hidden;
 }
 
-/* h2 {
+.signupTitle {
   text-align: center;
   margin-bottom: 20px;
-} */
+  color: #333;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: bold;
+}
 
-.login-form {
+.signupForm {
   width: 100%;
 }
 
-.login-form .form-group {
+.formGroup {
   margin-bottom: clamp(16px, 3vh, 24px);
   position: relative;
   width: 100%;
 }
 
-.login-form label {
+.lbl {
   display: block;
   font-weight: 500;
   margin-bottom: clamp(4px, 1vh, 8px);
@@ -43,21 +45,22 @@
   transition: all 0.2s ease;
 }
 
-.login-form input {
+.inp {
   width: 100%;
   padding: clamp(12px, 2vh, 14px) clamp(12px, 2vw, 16px);
   font-size: clamp(14px, 2.5vw, 16px);
   border-radius: clamp(8px, 2vw, 12px);
   border: 2px solid #e0e0e0;
   transition: all 0.3s ease;
-  background-color: #ffffff;
+  background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
 }
 
-.login-form input:focus {
+.inp:focus {
   border-color: #00bfae;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
 }
 
-.login-button {
+.signupButton {
   width: 100%;
   padding: clamp(12px, 2vh, 16px);
   background-color: #00bfae;
@@ -66,87 +69,119 @@
   border: none;
   border-radius: clamp(8px, 2vw, 12px);
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.login-button:hover {
+.signupButton:hover {
   background-color: #00796b;
+  transform: translateY(-2px);
 }
 
-.error-message,
-.success-message {
+.errorMessage,
+.successMessage {
   width: 100%;
   padding: clamp(10px, 2vh, 12px) clamp(12px, 2vw, 16px);
   font-size: clamp(13px, 2.5vw, 14px);
   border-radius: clamp(8px, 2vw, 12px);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.successMessage {
+  background-color: #d4edda;
+  color: #155724;
 }
 
 /* Media Queries */
 @media screen and (max-width: 480px) {
-  .login-container {
+  .signupContainer {
     width: 95%;
     margin-top: 16px;
   }
   
-  .login-button {
+  .signupButton {
     padding: 14px;
     font-size: 14px;
     letter-spacing: 0.5px;
   }
   
-  .login-form input {
-    font-size: 16px; /* Prevents zoom on iOS */
+  .inp {
+    font-size: 16px;
   }
 }
 
 @media screen and (max-height: 600px) {
-  .login-container {
+  .signupContainer {
     margin-top: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
   }
   
-  .login-form .form-group {
+  .formGroup {
     margin-bottom: 12px;
   }
 }
 
 /* Touch Device Optimizations */
 @media (hover: none) {
-  .login-button:hover {
+  .signupButton:hover {
     transform: none;
     box-shadow: none;
   }
   
-  .login-button:active {
+  .signupButton:active {
     transform: scale(0.98);
     background: linear-gradient(135deg, #00ab9c 0%, #1e88e5 100%);
   }
   
-  .login-form input:hover {
+  .inp:hover {
     border-color: #e0e0e0;
   }
 }
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  .login-container {
+  .signupContainer {
     background: linear-gradient(145deg, #2d2d2d, #252525);
     box-shadow: 
       0 10px 30px rgba(0, 0, 0, 0.2),
       0 1px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .login-form label {
+  .lbl {
     color: #e0e0e0;
   }
 
-  .login-form input {
+  .inp {
     background-color: #333333;
     border-color: #404040;
     color: #ffffff;
   }
 
-  .login-form input:focus {
+  .inp:focus {
     background-color: #3a3a3a;
   }
+}
+
+.loginPrompt {
+  margin-top: 20px;
+  text-align: center;
+  font-size: clamp(13px, 2.5vw, 14px);
+  color: #333;
+}
+
+.loginLink {
+  color: #00bfae;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.loginLink:hover {
+  color: #00796b;
 }
