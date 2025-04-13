@@ -19,7 +19,7 @@ export default function KubernetesMonitor() {
   return (
     <div className="monitor-card" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <h2>Kubernetes Monitoring</h2>
-      <p>Kubernetes Cluster Count: {mockKubernetesData.length}</p>
+      {/* <p>Kubernetes Cluster Count: {mockKubernetesData.length}</p> */}
     </div>
   );
 }
