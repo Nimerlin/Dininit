@@ -24,7 +24,7 @@
   font-weight: 800;
   text-shadow:
     0 0 5px rgba(88, 104, 103, 0.6),
-    0 0 10px rgba(0, 255, 247, 0.4);
+    0 0 10px rgba(208, 243, 242, 0.4);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   text-align: center;
@@ -129,23 +129,4 @@
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   75% { transform: translateX(5px); }
-}
-
-/* login.module.css */
-.signup-link {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 16px;
-  color: #0070f3; /* Change to your desired color */
-}
-
-.signup-link a {
-  color: #00bfae; /* Change to your desired color */
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.signup-link a:hover {
-  color: #0056b3; /* Change to your desired hover color */
 }
