@@ -30,7 +30,7 @@ const UserNavbar = ({ user, onLogout }) => {
 
         {/* Navigation Links */}
         <div className="flex space-x-6">
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/services">Services</Link>
           <Link href="/ticket">Create Ticket</Link>
           <Link href="/view-tickets">View Tickets</Link>
           <Link href="/settings">Settings</Link>
