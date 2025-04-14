@@ -1,13 +1,13 @@
 .image {
+    background-image: url('/bg.png'); /* update path if needed */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
     background-size: cover;
     height: 100vh;
-}
-
-.bodyBackground {
-    background-color: #242424;
   }
-
+  
+  /* .bodyBackground {
+    background-color: #0b0b12;
+  } */
   

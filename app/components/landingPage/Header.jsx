@@ -34,7 +34,6 @@ export default function Header() {
         
         <div className="z-10 flex-1">
           <h1 className="header-title text-6xl font-extrabold mb-4">We're Building Modern Software</h1>
-          <p className="header-subtitle text-2xl mb-8">Contained is by middleton am. Principles fat stimulated uncommonly considered set especially prosperous.</p>
           <a href="#learn-more">
             <button className="cta-button border border-white py-3 px-8 text-2xl rounded-lg hover:bg-white hover:text-blue-900 transition-all duration-200">
               Know More

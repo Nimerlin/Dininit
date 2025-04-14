@@ -43,7 +43,7 @@ const Aboutsection = () => {
                                 <div className="w-full flex justify-center items-center mb-4">
                                     <FaChartLine className="icon text-4xl text-orange-500" />                                </div>
                                 <h3 className="text-xl font-semibold mb-4 text-black">Monitoring</h3>
-                                <p className="text-lg text-black">Situation perpetual allowance offending as principle satisfied. Improved carriage.</p>
+                                <p className="text-lg text-black">"Track real-time performance metrics across your infrastructure."</p>
                             </div>
 
                             {/* Card 2 */}
@@ -52,7 +52,7 @@ const Aboutsection = () => {
                                     <FaComments className="icon text-4xl text-green-500" />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-4 text-black">Support Chat</h3>
-                                <p className="text-lg text-black">Situation perpetual allowance offending as principle satisfied. Improved carriage.</p>                            </div>
+                                <p className="text-lg text-black">"Instant technical help with built-in team communication tools."</p>                            </div>
 
                             {/* Card 3 */}
                             <div className="box bg-white p-4 rounded-lg shadow-lg text-center max-w-xs mx-auto">
@@ -61,7 +61,7 @@ const Aboutsection = () => {
                                 </div>
                                 <h3 className="text-xl font-semibold mb-4 text-black">System Analysis</h3>
 
-                                <p className="text-lg text-black">Situation perpetual allowance offending as principle satisfied. Improved carriage.</p>
+                                <p className="text-lg text-black">"Deep insights to optimize system health and behavior."</p>
                             </div>
 
                             {/* Card 4 */}
@@ -70,7 +70,7 @@ const Aboutsection = () => {
                                     <FaRocket className="icon text-4xl text-yellow-500" />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-4 text-black">First Run</h3>
-                                <p className="text-lg text-black">Situation perpetual allowance offending as principle satisfied. Improved carriage.</p>
+                                <p className="text-lg text-black">"Quick onboarding to launch monitoring in under minutes."</p>
                             </div>
                         </div>
                     )}
