@@ -13,7 +13,6 @@ import {
   fetchIORead,
   fetchIOWrite,
 } from "../api/prometheus";
-import DockerLayout from "../layout";
 import {
   Chart as ChartJS,
   CategoryScale,
