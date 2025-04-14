@@ -9,7 +9,7 @@ const Footer = () => {
         <div>
           <h3 className="text-2xl font-semibold text-indigo-400 mb-4">About</h3>
           <p className="text-gray-400">
-            Learn more about our company, vision, and values. We aim to provide the best services to enhance your business.
+          Dinenit is a modern, open-source monitoring platform for developers and sysadmins. Track real-time metrics, analyze system health, receive smart alerts, and visualize everything in beautiful, customizable dashboards.
           </p>
         </div>
 

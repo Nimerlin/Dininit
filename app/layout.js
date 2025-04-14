@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${inter.className} ${styles.bodyBackground}`}>
+      <body className={`${inter.className} ${styles.image}`}>
         <main className="main-container min-h-screen flex flex-col mx-auto">
           
           {/* Header at the top */}
