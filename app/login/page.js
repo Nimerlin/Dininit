@@ -44,7 +44,7 @@ const LoginPage = () => {
           if (subscriptionResponse.data.subscribed === 'yes') {
             router.push(`${uiBaseUrl}/services`);
           } else {
-            router.push(`${apiBaseUrl}/payment`);
+            router.push(`${uiBaseUrl}/payment`);
           }
         }, 1500);
       } else {
