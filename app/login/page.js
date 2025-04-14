@@ -17,9 +17,11 @@ const LoginPage = () => {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const uiBaseUrl = process.env.NEXT_PUBLIC_UI_URL;
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("apiBaseUrl:", apiBaseUrl);
       const response = await axios.post(`${apiBaseUrl}/login`, { 
         email, 
         password 
@@ -33,7 +35,7 @@ const LoginPage = () => {
         setUsername(response.data.user.username || response.data.user.name);
         
         // Check subscription status
-        const subscriptionResponse = await axios.post(`${apiBaseUrl}//verify-subscription`, {
+        const subscriptionResponse = await axios.post(`${apiBaseUrl}/verify-subscription`, {
           userId: response.data.user.name
         });
 

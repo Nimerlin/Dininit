@@ -5,7 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 
 import UserNavbar from "/app/components/dashboard/userNavbar";
 
-const DefaultLayout = ({ children, noNavbar, noFooter }) => (
+const DefaultLayout = ({ children }) => (
   <Container fluid>
       <UserNavbar/>
         {children}
