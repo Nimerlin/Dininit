@@ -26,6 +26,10 @@ jobs:
     name: Install Dependencies & Build
     runs-on: ubuntu-latest
     needs: clone
+    env:
+    NEXT_PUBLIC_PROMETHEUS_URL: ${{ secrets.NEXT_PUBLIC_PROMETHEUS_URL }}
+    NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+    NEXT_PUBLIC_UI_URL: ${{ secrets.NEXT_PUBLIC_UI_URL }}
     steps:
       - name: Download Source Code
         uses: actions/download-artifact@v4
@@ -193,7 +197,7 @@ jobs:
           sed "s|REPLACE_ME_PROMETHEUS_URL|$ENCODED_PROMETHEUS_URL|" k8s/secret-template.yml | \
           sed "s|REPLACE_ME_API_URL|$ENCODED_API_URL|" | \
           sed "s|REPLACE_ME_UI_URL|$ENCODED_UI_URL|" > k8s/secret.yml
-          
+
       - name: Apply Kubernetes Manifests
         run: |
           kubectl apply -f k8s/
