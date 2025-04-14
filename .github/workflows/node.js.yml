@@ -28,9 +28,9 @@ jobs:
     needs: clone
     environment: prod
     env:
-    NEXT_PUBLIC_PROMETHEUS_URL: ${{ secrets.NEXT_PUBLIC_PROMETHEUS_URL }}
-    NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-    NEXT_PUBLIC_UI_URL: ${{ secrets.NEXT_PUBLIC_UI_URL }}
+      NEXT_PUBLIC_PROMETHEUS_URL: ${{ secrets.NEXT_PUBLIC_PROMETHEUS_URL }}
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_UI_URL: ${{ secrets.NEXT_PUBLIC_UI_URL }}
     steps:
       - name: Download Source Code
         uses: actions/download-artifact@v4
