@@ -41,7 +41,7 @@ const UserNavbar = ({ user, onLogout }) => {
           <div className="flex items-center gap-2">
             <FaUser className="text-lg" />
             <span className="font-medium text-lg">
-              Welcome, {user}!
+              Welcome, Dinesh
             </span>
           </div>
           <button

@@ -108,12 +108,12 @@ export default function DummyPayment() {
     setIsValidCard(true);
     setIsValidUpi(true);
   };
-
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const savePaymentStatus = async (status) => {
     try {
       const subscribed = status === 'success' ? 'yes' : 'no';
 
-      const response = await fetch('http://localhost:3001/api/payment', {
+      const response = await fetch(`${apiBaseUrl}/payment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -190,7 +190,7 @@ export default function DummyPayment() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={styles.container}>
         <div className={styles.card}>
           <div className={styles.header}>

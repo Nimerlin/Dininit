@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./Navbar.module.css";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+const uiBaseUrl = process.env.NEXT_PUBLIC_UI_URL;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +57,7 @@ export default function Navbar() {
     setUser(null);
 
     setTimeout(() => {
-      router.push(`${apiBaseUrl}`);
+      router.push(`${uiBaseUrl}`);
     }, 1500);
   };
 

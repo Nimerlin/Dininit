@@ -19,7 +19,7 @@ export default function Subscription() {
   ];
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={styles.container}>
         {plans.map((plan, index) => (
           <div key={index} className={styles.card}>
