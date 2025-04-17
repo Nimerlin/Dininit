@@ -22,11 +22,11 @@ const MicroservicesMonitor = () => {
   return (
     <div className="monitor-card" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <h2>Microservices Monitoring</h2>
-      <p>Docker Container Count: {mockDockerData.length}</p>
+      {/* <p>Docker Container Count: {mockDockerData.length}</p> */}
       <ul>
-        {mockDockerData.map((container, index) => (
+        {/* {mockDockerData.map((container, index) => (
           <li key={index}>{container.containerName}</li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );

@@ -1,92 +1,96 @@
 /* styles/components/Docker/Docker.module.css */
 
+/* ========== Layout Containers ========== */
+.container {
+  background-color: #1e1e2f;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
 
-  
-  .container {
-   background-color: #242424;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #fffbfb;
-  }
-  
-  .lightGreyBackground {
-    background-color: #242424; /* Light grey background */
-    padding: 10px;
-    border-radius: 5px;
-  }
+/* ========== Typography ========== */
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #f0f0f5;
+  font-weight: bold;
+}
 
-  .greyBox {
-    padding: 20px;
-    margin-top: 10px;
-    /* border: 1px solid #5c5c5c;
-    border-radius: 20px; */
-    /* Add any other styles you need */
-  }
-  .cardGrid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .greyBackground {
-    background-color: #e0e0e0; /* Grey background */
-    padding: 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .greyBackground:hover {
-    background-color: #d0d0d0; /* Slightly darker grey on hover */
-  }
-  
-  .dashboard {
-    text-align: center;
-  }
-  
-  .dashboard h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #ffffff;
-  }
-  
-  .dashboard p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: #ccc;
-  }
-  
-  .chart {
-    margin-top: 2rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.dashboard {
+  text-align: center;
+}
 
-  .card {
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fffdfd;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
+.dashboard h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #e0e0eb;
+}
 
-  .card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
+.dashboard p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #b0b0c3;
+}
 
-  .card:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  }
-  
+/* ========== Background Blocks ========== */
+.lightGreyBackground {
+  background-color: #2a2a3b;
+  padding: 15px;
+  border-radius: 8px;
+}
 
-  
+.greyBox {
+  padding: 20px;
+  margin-top: 10px;
+  border: 1px solid #4c4c5c;
+  border-radius: 20px;
+}
+
+.greyBackground {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.greyBackground:hover {
+  background-color: #e5e5e5;
+}
+
+/* ========== Card Layout ========== */
+.cardGrid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ========== Card Styles ========== */
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== Chart Section ========== */
+.chart {
+  margin-top: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}

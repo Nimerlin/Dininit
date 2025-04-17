@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from 'next/link'; // Import Link component from Next.js
 import styles from "./login.module.css"; // Import CSS Module
 import Navbar from '../components/Navbar';
 
@@ -14,10 +15,13 @@ const LoginPage = () => {
   const router = useRouter();
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const uiBaseUrl = process.env.NEXT_PUBLIC_UI_URL;
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("apiBaseUrl:", apiBaseUrl);
       const response = await axios.post(`${apiBaseUrl}/login`, { 
         email, 
         password 
@@ -31,16 +35,16 @@ const LoginPage = () => {
         setUsername(response.data.user.username || response.data.user.name);
         
         // Check subscription status
-        const subscriptionResponse = await axios.post("http://localhost:3001/api/verify-subscription", {
+        const subscriptionResponse = await axios.post(`${apiBaseUrl}/verify-subscription`, {
           userId: response.data.user.name
         });
 
         // Redirect based on subscription status
         setTimeout(() => {
           if (subscriptionResponse.data.subscribed === 'yes') {
-            router.push("http://localhost:3000/services");
+            router.push(`${uiBaseUrl}/services`);
           } else {
-            router.push("http://localhost:3000/payment");
+            router.push(`${uiBaseUrl}/payment`);
           }
         }, 1500);
       } else {
@@ -65,7 +69,6 @@ const LoginPage = () => {
 
   return (
     <>
-      <Navbar />
       <div className={styles["login-container"]}>
         {username ? (
           <div className={styles["welcome-message"]}>
@@ -74,7 +77,7 @@ const LoginPage = () => {
           </div>
         ) : (
           <>
-            <h2>Login</h2>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit} className={styles["login-form"]}>
               {error && <div className={styles["error-message"]}>{error}</div>}
               
@@ -103,6 +106,9 @@ const LoginPage = () => {
               </div>
 
               <button type="submit" className={styles["login-button"]}>Login</button>
+              <div className={styles["signup-link"]}>
+               Don't have an account?  <Link href="/signup"> Sign up</Link>
+              </div>
             </form>
           </>
         )}
@@ -112,4 +118,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
- 

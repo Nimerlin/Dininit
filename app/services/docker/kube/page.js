@@ -12,7 +12,7 @@
 //   fetchServicesPerNamespace,
 //   fetchTotalIngresses,
 //   fetchIngressesPerNamespace,
-// } from "../api/prometheus"; // Adjust this path as needed
+// } from "../api/prometheus";
 
 // const Overview = ({ env }) => {
 //   const [metrics, setMetrics] = useState({
@@ -81,100 +81,105 @@
 //   }, [env]);
 
 //   const MetricCard = ({ title, value }) => (
-//     <div className="p-4 rounded-xl shadow bg-white border">
-//       <h3 className="text-lg font-medium">{title}</h3>
-//       <p className="text-2xl font-bold">{value}</p>
+//     <div className="p-6 rounded-2xl shadow bg-gray-800 border border-gray-700 hover:shadow-lg transition-shadow duration-300">
+//       <h3 className="text-lg font-medium text-gray-300">{title}</h3>
+//       <p className="text-3xl font-bold text-indigo-400 mt-2">{value}</p>
 //     </div>
 //   );
 
 //   return (
-//     <div className="p-6 space-y-6">
-//       <h2 className="text-2xl font-bold">Cluster Overview ({env})</h2>
+//     <div className="p-8 bg-gray-900 min-h-screen text-white">
+//       <h2 className="text-3xl font-extrabold text-white mb-6">
+//         Cluster Overview <span className="text-indigo-400">({env})</span>
+//       </h2>
 
 //       {loading ? (
-//         <p className="text-gray-500">Loading metrics...</p>
+//         <p className="text-gray-400 text-lg">Loading metrics...</p>
 //       ) : (
-//         <>
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+//         <div className="space-y-10">
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 //             <MetricCard title="Total Pods" value={metrics.totalPods?.[0]?.value?.[1] || "0"} />
 //             <MetricCard title="Namespace Count" value={metrics.namespaces?.[0]?.value?.[1] || "0"} />
 //             <MetricCard title="Total Services" value={metrics.totalServices?.[0]?.value?.[1] || "0"} />
 //             <MetricCard title="Total Ingresses" value={metrics.totalIngresses?.[0]?.value?.[1] || "0"} />
 //           </div>
 
-//           <div>
-//             <h3 className="text-lg font-semibold mb-2">Pods per Namespace</h3>
-//             <ul className="list-disc pl-6">
-//               {metrics.podsPerNamespace.map((ns) => (
-//                 <li key={ns.metric.namespace}>
-//                   {ns.metric.namespace}: {ns.value[1]} pods
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
+//           <Section title="Pods per Namespace" data={metrics.podsPerNamespace} unit="pods" />
+//           <Section title="Services per Namespace" data={metrics.servicesPerNamespace} unit="services" />
+//           <Section title="Ingresses per Namespace" data={metrics.ingressesPerNamespace} unit="ingresses" />
 
-//           <div>
-//             <h3 className="text-lg font-semibold mb-2">Services per Namespace</h3>
-//             <ul className="list-disc pl-6">
-//               {metrics.servicesPerNamespace.map((svc) => (
-//                 <li key={svc.metric.namespace}>
-//                   {svc.metric.namespace}: {svc.value[1]} services
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-
-//           <div>
-//             <h3 className="text-lg font-semibold mb-2">Ingresses per Namespace</h3>
-//             <ul className="list-disc pl-6">
-//               {metrics.ingressesPerNamespace.map((ing) => (
-//                 <li key={ing.metric.namespace}>
-//                   {ing.metric.namespace}: {ing.value[1]} ingresses
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-
+//           {/* Scrollable metric sections with sticky headers */}
 //           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-//             <div>
-//               <h3 className="text-lg font-semibold mb-2">CPU Usage per Container</h3>
-//               <ul className="list-disc pl-6">
-//                 {metrics.containerCPU.map((c) => (
-//                   <li key={c.metric.container}>
-//                     {c.metric.container}: {parseFloat(c.value[1]).toFixed(4)} cores
-//                   </li>
-//                 ))}
-//               </ul>
-//             </div>
-//             <div>
-//               <h3 className="text-lg font-semibold mb-2">Memory Usage per Container</h3>
-//               <ul className="list-disc pl-6">
-//                 {metrics.containerMemory.map((c) => (
-//                   <li key={c.metric.container}>
-//                     {c.metric.container}: {(parseFloat(c.value[1]) / 1024 ** 2).toFixed(2)} MiB
-//                   </li>
-//                 ))}
-//               </ul>
-//             </div>
+//             <StickySection
+//               title="CPU Usage per Container"
+//               data={metrics.containerCPU}
+//               format={(v) => `${parseFloat(v).toFixed(4)} cores`}
+//             />
+//             <StickySection
+//               title="Memory Usage per Container"
+//               data={metrics.containerMemory}
+//               format={(v) => `${(parseFloat(v) / 1024 ** 2).toFixed(2)} MiB`}
+//             />
 //           </div>
 
-//           <div>
-//             <h3 className="text-lg font-semibold mb-2">Container Restarts</h3>
-//             <ul className="list-disc pl-6">
-//               {metrics.restarts.map((r) => (
-//                 <li key={r.metric.container}>
-//                   {r.metric.container}: {parseInt(r.value[1], 10)} restarts
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-//         </>
+//           <StickySection
+//             title="Container Restarts"
+//             data={metrics.restarts}
+//             format={(v) => `${parseInt(v, 10)} restarts`}
+//           />
+//         </div>
 //       )}
 //     </div>
 //   );
 // };
 
+// // Standard section (not scrollable)
+// const Section = ({ title, data, unit, format }) => (
+//   <div>
+//     <h3 className="text-xl font-semibold text-gray-200 mb-3">{title}</h3>
+//     <ul className="space-y-2">
+//       {data.map((item, idx) => {
+//         const name = item.metric?.namespace || item.metric?.container || `Item ${idx}`;
+//         const value = item.value?.[1] || "0";
+//         return (
+//           <li
+//             key={name}
+//             className="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm text-gray-300"
+//           >
+//             <span className="font-medium text-white">{name}</span>:{" "}
+//             {format ? format(value) : `${value} ${unit}`}
+//           </li>
+//         );
+//       })}
+//     </ul>
+//   </div>
+// );
+
+// // Scrollable section with sticky heading
+// const StickySection = ({ title, data, format }) => (
+//   <div className="max-h-80 overflow-y-auto pr-2 border border-gray-700 rounded-xl bg-gray-800 shadow">
+//     <div className="sticky top-0 z-10 bg-gray-800 p-3 border-b border-gray-700">
+//       <h3 className="text-lg font-semibold text-white">{title}</h3>
+//     </div>
+//     <ul className="p-3 space-y-2">
+//       {data.map((item, idx) => {
+//         const name = item.metric?.container || item.metric?.namespace || `Item ${idx}`;
+//         const value = item.value?.[1] || "0";
+//         return (
+//           <li
+//             key={name}
+//             className="text-sm text-gray-300 bg-gray-900 border border-gray-700 p-2 rounded-md"
+//           >
+//             <span className="font-medium text-white">{name}</span>: {format ? format(value) : value}
+//           </li>
+//         );
+//       })}
+//     </ul>
+//   </div>
+// );
+
 // export default Overview;
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -191,7 +196,7 @@ import {
   fetchIngressesPerNamespace,
 } from "../api/prometheus";
 
-const Overview = ({ env }) => {
+const Overview = () => {
   const [metrics, setMetrics] = useState({
     totalPods: [],
     namespaces: [],
@@ -223,16 +228,16 @@ const Overview = ({ env }) => {
           totalIngresses,
           ingressesPerNamespace,
         ] = await Promise.all([
-          fetchTotalPods({ env }),
-          fetchNamespaceList({ env }),
-          fetchPodCountPerNamespace({ env }),
-          fetchCPUUsage({ env }),
-          fetchMemoryUsage({ env }),
-          fetchContainerRestarts({ env }),
-          fetchTotalServices({ env }),
-          fetchServicesPerNamespace({ env }),
-          fetchTotalIngresses({ env }),
-          fetchIngressesPerNamespace({ env }),
+          fetchTotalPods(),
+          fetchNamespaceList(),
+          fetchPodCountPerNamespace(),
+          fetchCPUUsage(),
+          fetchMemoryUsage(),
+          fetchContainerRestarts(),
+          fetchTotalServices(),
+          fetchServicesPerNamespace(),
+          fetchTotalIngresses(),
+          fetchIngressesPerNamespace(),
         ]);
 
         setMetrics({
@@ -255,7 +260,7 @@ const Overview = ({ env }) => {
     };
 
     fetchAllMetrics();
-  }, [env]);
+  }, []);
 
   const MetricCard = ({ title, value }) => (
     <div className="p-6 rounded-2xl shadow bg-gray-800 border border-gray-700 hover:shadow-lg transition-shadow duration-300">
@@ -266,9 +271,7 @@ const Overview = ({ env }) => {
 
   return (
     <div className="p-8 bg-gray-900 min-h-screen text-white">
-      <h2 className="text-3xl font-extrabold text-white mb-6">
-        Cluster Overview <span className="text-indigo-400">({env})</span>
-      </h2>
+      <h2 className="text-3xl font-extrabold text-white mb-6">Cluster Overview</h2>
 
       {loading ? (
         <p className="text-gray-400 text-lg">Loading metrics...</p>
@@ -285,7 +288,6 @@ const Overview = ({ env }) => {
           <Section title="Services per Namespace" data={metrics.servicesPerNamespace} unit="services" />
           <Section title="Ingresses per Namespace" data={metrics.ingressesPerNamespace} unit="ingresses" />
 
-          {/* Scrollable metric sections with sticky headers */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <StickySection
               title="CPU Usage per Container"
@@ -310,7 +312,6 @@ const Overview = ({ env }) => {
   );
 };
 
-// Standard section (not scrollable)
 const Section = ({ title, data, unit, format }) => (
   <div>
     <h3 className="text-xl font-semibold text-gray-200 mb-3">{title}</h3>
@@ -332,7 +333,6 @@ const Section = ({ title, data, unit, format }) => (
   </div>
 );
 
-// Scrollable section with sticky heading
 const StickySection = ({ title, data, format }) => (
   <div className="max-h-80 overflow-y-auto pr-2 border border-gray-700 rounded-xl bg-gray-800 shadow">
     <div className="sticky top-0 z-10 bg-gray-800 p-3 border-b border-gray-700">

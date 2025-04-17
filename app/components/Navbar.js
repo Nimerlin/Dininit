@@ -3,6 +3,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "./Navbar.module.css";
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+const uiBaseUrl = process.env.NEXT_PUBLIC_UI_URL;
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -54,14 +57,14 @@ export default function Navbar() {
     setUser(null);
 
     setTimeout(() => {
-      router.push("http://localhost:3000");
+      router.push(`${uiBaseUrl}`);
     }, 1500);
   };
 
   return (
     <nav
       className={`sticky top-0 z-50 ${
-        scrolled ? "bg-[#02194e]" : "bg-transparent"
+        scrolled ? "bg-[#242424]" : "bg-transparent"
       } text-white w-full transition-colors duration-300`}
     >
       <div className="container mx-auto flex justify-between items-center py-4">
@@ -70,17 +73,15 @@ export default function Navbar() {
           <img src="/logo1-removebg.png" alt="Logo" className="h-14 w-32" />
         </div>
 
-        {/* Navigation Links */}
+
         <div className="flex space-x-6">
-          <Link href="/">Home</Link>
-          <Link href="#features">Features</Link>
-          <Link href="#about">About</Link>
-          {/* <Link href="/overview">Overview</Link> */}
-          <Link href="#pricing">Pricing</Link>
-          {/* <Link href="/team">Team</Link> */}
-          <Link href="#contact">Contact</Link>
-          {user && <Link href="/ticket">Create Ticket</Link>}
-          {user && <Link href="/view-tickets">View Tickets</Link>}
+          <Link href="/" className={styles.navLink}>Home</Link>
+          <Link href="#features" className={styles.navLink}>Features</Link>
+          <Link href="#about" className={styles.navLink}>About</Link>
+          <Link href="#pricing" className={styles.navLink}>Pricing</Link>
+          <Link href="#contact" className={styles.navLink}>Contact</Link>
+          {user && <Link href="/ticket" className={styles.navLink}>Create Ticket</Link>}
+          {user && <Link href="/view-tickets" className={styles.navLink}>View Tickets</Link>}
         </div>
 
         {/* User Actions */}

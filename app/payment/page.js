@@ -7,24 +7,28 @@ import Navbar from '../components/Navbar';
 export default function Subscription() {
   const router = useRouter();
   
-  const handleProceed = () => {
-    router.push('/dummy-payment'); // Redirect to the dummy payment page
+  const handleProceed = (plan,price) => {
+    // Redirect to the dummy payment page with the selected plan
+    router.push(`/dummy-payment?plan=${plan}&price=${price}`);
   };
 
+  const plans = [
+    { name: "Basic", displayPrice: "₹199 / month", numericPrice: 199, description: "Access to basic features and content." },
+    { name: "Standard", displayPrice: "₹499 / month", numericPrice: 499, description: "Unlock all features and premium content." },
+    { name: "Premium", displayPrice: "₹999 / month", numericPrice: 999, description: "All features and priority support." }
+  ];
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={styles.container}>
-        <div className={styles.card}>
-          <h1>Subscription Plan</h1>
-          <p className={styles.price}>₹499 / month</p>
-          <p className={styles.description}>
-            Unlock all features and premium content with this subscription plan.
-          </p>
-         
-            <button className={styles.buyButton} onClick={handleProceed}>Buy Now</button>
-          
-        </div>
+        {plans.map((plan, index) => (
+          <div key={index} className={styles.card}>
+            <h1>{plan.name} Plan</h1>
+            <p className={styles.price}>{plan.displayPrice}</p>
+            <p className={styles.description}>{plan.description}</p>
+            <button className={styles.buyButton} onClick={() => handleProceed(plan.name,plan.numericPrice)}>Buy Now</button>
+          </div>
+        ))}
       </div>
     </>
   );

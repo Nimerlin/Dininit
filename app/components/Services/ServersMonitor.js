@@ -20,7 +20,7 @@ export default function ServersMonitor() {
   return (
     <div className="monitor-card" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <h2>Server (VM) Monitoring</h2>
-      <p>Server Count: {mockServerData.length}</p>
+      {/* <p>Server Count: {mockServerData.length}</p> */}
     </div>
   );
 }

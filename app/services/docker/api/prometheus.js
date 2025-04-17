@@ -185,3 +185,22 @@ export const fetchTotalIngresses = async (labels = {}) => {
 export const fetchIngressesPerNamespace = async (labels = {}) => {
   return fetchMetrics("count by(namespace) (kube_ingress_info)", labels);
 };
+
+
+// Node Exporter Metrics
+
+export const fetchNodeCPUUsage = async (labels = {}) =>
+  fetchMetrics('rate(node_cpu_seconds_total{mode!="idle"}[1m])', labels);
+
+export const fetchNodeMemoryUsage = async (labels = {}) =>
+  fetchMetrics('node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes', labels);
+
+export const fetchNodeNetworkReceive = async (labels = {}) =>
+  fetchMetrics('rate(node_network_receive_bytes_total[1m])', labels);
+
+export const fetchNodeNetworkTransmit = async (labels = {}) =>
+  fetchMetrics('rate(node_network_transmit_bytes_total[1m])', labels);
+
+export const fetchCustomPrometheusMetric = async (query, labels = {}) =>
+  fetchMetrics(query, labels);
+

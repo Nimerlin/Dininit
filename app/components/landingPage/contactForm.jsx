@@ -87,29 +87,29 @@ const ContactForm = () => {
             <div className="w-6">📍</div>
             <div>
               <strong>Address:</strong><br />
-              198 West 21th Street, Suite 721<br />
-              New York NY 10016
+              Chembur<br />
+              Mumbai IN 400072
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="w-6">📞</div>
             <div>
-              <strong>Phone:</strong> + 1235 2355 98
+              <strong>Phone:</strong> + 91 7738939056
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="w-6">✉️</div>
             <div>
-              <strong>Email:</strong> info@yoursite.com
+              <strong>Email:</strong> serviceteam@dinenit.com
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="w-6">🌐</div>
             <div>
-              <strong>Website:</strong> yoursite.com
+              <strong>Website:</strong> www.dinenit.com
             </div>
           </div>
         </div>

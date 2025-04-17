@@ -265,3 +265,22 @@
     background-color: #0056b3;
   }
   
+  .tabGroup {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tab {
+    padding: 0.5rem 1rem;
+    background: #eee;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .activeTab {
+    background: #0070f3;
+    color: white;
+  }
+
+  

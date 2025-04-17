@@ -1,0 +1,56 @@
+.darkContainer {
+    background-color: #121212;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #fff;
+  }
+  
+  .ticketsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1f1f1f;
+    color: #ccc;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  }
+  
+  .ticketsTable th,
+  .ticketsTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+  }
+  
+  .ticketsTable th {
+    background-color: #2c2c2c;
+    color: #fff;
+  }
+  
+  .ticketRow:hover {
+    background-color: #2e2e2e;
+  }
+  
+  .loginMessage {
+    color: #ff6b6b;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .loading,
+  .error {
+    color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+  }
+  

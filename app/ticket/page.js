@@ -1,8 +1,10 @@
 "use client"; // Ensure it's treated as a client component
 
 import React, { useState, useEffect } from 'react';
+import Navbar from '../components/Navbar';
 import styles from './ticket.module.css'; // Import CSS Module
-//import './App.css'; // Import global styles
+
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function TicketPage() {
   // State variables
@@ -41,7 +43,7 @@ export default function TicketPage() {
     const updatedFormData = { ...formData, ticket_number: ticketNumber };
 
     try {
-      const response = await fetch('http://localhost:3001/api/ticket', {
+      const response = await fetch(`${apiBaseUrl}/ticket`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,108 +89,111 @@ export default function TicketPage() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formWrapper}>
-        <h1 className={styles.title}>Raise a Ticket</h1>
-        <p className={styles.subtitle}>Submit your request and we'll get back to you as soon as possible.</p>
+    <>
+      <Navbar /> {/* Add Navbar component here */}
+      <div className={styles.container}>
+        <div className={styles.formWrapper}>
+          <h1 className={styles.title}>Raise a Ticket</h1>
+          <p className={styles.subtitle}>Submit your request and we'll get back to you as soon as possible.</p>
 
-        {submitStatus && (
-          <div className={`${styles.status} ${styles[submitStatus.type]}`}>
-            {submitStatus.message}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.formGroup}>
-            <label htmlFor="title">Ticket Title*</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              required
-              placeholder="Brief description of the issue"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="category">Category*</label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleInputChange}
-              required
-            >
-              <option value="">Select a category</option>
-              <option value="it">IT Support</option>
-              <option value="hr">HR</option>
-              <option value="facilities">Facilities</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="priority">Priority Level*</label>
-            <div className={styles.radioGroup}>
-              {['low', 'medium', 'high', 'critical'].map((priority) => (
-                <label key={priority} className={styles.radioLabel}>
-                  <input
-                    type="radio"
-                    name="priority"
-                    value={priority}
-                    checked={formData.priority === priority}
-                    onChange={handleInputChange}
-                  />
-                  {priority.charAt(0).toUpperCase() + priority.slice(1)}
-                </label>
-              ))}
+          {submitStatus && (
+            <div className={`${styles.status} ${styles[submitStatus.type]}`}>
+              {submitStatus.message}
             </div>
-          </div>
+          )}
 
-          <div className={styles.formGroup}>
-            <label htmlFor="description">Description*</label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              required
-              placeholder="Please provide detailed information about your issue"
-              rows={5}
-            />
-          </div>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <label htmlFor="title">Ticket Title*</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value={formData.title}
+                onChange={handleInputChange}
+                required
+                placeholder="Brief description of the issue"
+              />
+            </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="attachment">Attachment</label>
-            <input
-              type="file"
-              id="attachment"
-              name="attachment"
-              onChange={(e) => setFormData({...formData, attachment: e.target.files[0]})}
-              className={styles.fileInput}
-            />
-          </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="category">Category*</label>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select a category</option>
+                <option value="it">IT Support</option>
+                <option value="hr">HR</option>
+                <option value="facilities">Facilities</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
 
-          <div className={styles.buttonGroup}>
-            <button 
-              type="button" 
-              onClick={resetForm}
-              className={styles.resetButton}
-            >
-              Reset
-            </button>
-            <button 
-              type="submit" 
-              className={styles.submitButton}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Submitting...' : 'Submit Ticket'}
-            </button>
-          </div>
-        </form>
+            <div className={styles.formGroup}>
+              <label htmlFor="priority">Priority Level*</label>
+              <div className={styles.radioGroup}>
+                {['low', 'medium', 'high', 'critical'].map((priority) => (
+                  <label key={priority} className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      name="priority"
+                      value={priority}
+                      checked={formData.priority === priority}
+                      onChange={handleInputChange}
+                    />
+                    {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="description">Description*</label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+                placeholder="Please provide detailed information about your issue"
+                rows={5}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="attachment">Attachment</label>
+              <input
+                type="file"
+                id="attachment"
+                name="attachment"
+                onChange={(e) => setFormData({...formData, attachment: e.target.files[0]})}
+                className={styles.fileInput}
+              />
+            </div>
+
+            <div className={styles.buttonGroup}>
+              <button 
+                type="button" 
+                onClick={resetForm}
+                className={styles.resetButton}
+              >
+                Reset
+              </button>
+              <button 
+                type="submit" 
+                className={styles.submitButton}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit Ticket'}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

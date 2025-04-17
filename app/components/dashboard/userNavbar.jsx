@@ -30,7 +30,7 @@ const UserNavbar = ({ user, onLogout }) => {
 
         {/* Navigation Links */}
         <div className="flex space-x-6">
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/services">Services</Link>
           <Link href="/ticket">Create Ticket</Link>
           <Link href="/view-tickets">View Tickets</Link>
           <Link href="/settings">Settings</Link>
@@ -41,7 +41,7 @@ const UserNavbar = ({ user, onLogout }) => {
           <div className="flex items-center gap-2">
             <FaUser className="text-lg" />
             <span className="font-medium text-lg">
-              Welcome, {user}!
+              Welcome, Dinesh
             </span>
           </div>
           <button
